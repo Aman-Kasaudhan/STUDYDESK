@@ -1,0 +1,263 @@
+/* .course-page {
+  max-width: 1100px;
+  margin: auto;
+  padding: 30px;
+  font-family: "Segoe UI", sans-serif;
+}
+
+.loading {
+  text-align: center;
+  font-size: 18px;
+}
+ 
+.course-header {
+  display: flex;
+  gap: 25px;
+
+  flex-direction: row;
+  align-items: center;
+}
+
+.course-header img {
+  width: 260px;
+  height: 160px;
+  object-fit: cover;
+  border-radius: 14px;
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
+}
+
+.course-header h1 {
+  margin-bottom: 8px;
+}
+ 
+.tags {
+  margin: 20px 0;
+}
+
+.tag {
+  background: linear-gradient(135deg, #6a5af9, #8c7bff);
+  color: white;
+  padding: 6px 14px;
+  border-radius: 20px;
+  margin-right: 10px;
+  font-size: 14px;
+}
+
+ 
+.requirements {
+  background: #f8f9ff;
+  padding: 20px;
+  border-radius: 14px;
+  margin-bottom: 30px;
+}
+
+.requirements ul {
+  margin-top: 10px;
+  padding-left: 20px;
+}
+
+ 
+.course-content h2 {
+  margin-bottom: 15px;
+}
+
+.section {
+  margin-bottom: 15px;
+  border-radius: 14px;
+  overflow: hidden;
+  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.08);
+}
+
+.section-header {
+  background: #1f2937;
+  color: white;
+  padding: 16px 20px;
+  display: flex;
+  justify-content: space-between;
+  cursor: pointer;
+}
+
+.section-header:hover {
+  background: #111827;
+}
+
+.lectures {
+  background: white;
+  padding: 15px;
+}
+
+.lecture {
+  padding: 15px;
+  border-bottom: 1px solid #eee;
+}
+
+.lecture:last-child {
+  border-bottom: none;
+}
+
+.lecture .duration {
+  margin-left: 10px;
+  color: gray;
+  font-size: 13px;
+}
+
+.actions {
+  margin-top: 10px;
+}
+
+.actions video {
+  width: 100%;
+  border-radius: 10px;
+  margin-bottom: 10px;
+}
+
+.download-btn {
+  display: inline-block;
+  padding: 8px 14px;
+  background: #10b981;
+  color: white;
+  border-radius: 8px;
+  text-decoration: none;
+}
+
+.download-btn:hover {
+  background: #059669;
+}
+
+ 
+.locked {
+  color: red;
+  font-size: 18px;
+  font-weight: bold;
+  margin-top: 30px;
+} */
+
+
+.course-layout {
+  display: grid;
+  grid-template-columns: 3fr 1.2fr;
+  gap: 40px;
+  max-width: 1400px;
+  margin: 0 auto;
+  padding: 40px;
+  font-family: "Inter", sans-serif;
+}
+
+/* LEFT */
+.left-panel {
+  text-align: left;
+}
+
+.course-title {
+  font-size: 34px;
+  font-weight: 700;
+  /* margin-bottom: 8px; */
+  margin-top: -20px;
+}
+
+.instructor {
+  color: #555;
+ margin-top: 30px;
+  margin-bottom: 30px;
+}
+
+/* TAGS */
+.tags {
+  margin-bottom: 25px;
+}
+
+.tag {
+  background: #eef2ff;
+  color: #3730a3;
+  padding: 6px 14px;
+  border-radius: 6px;
+  margin-right: 10px;
+  font-size: 14px;
+}
+
+/* REQUIREMENTS */
+.requirements {
+  background: #f9fafb;
+  padding: 2px;
+  border-radius: 10px;
+  margin-bottom: 20px;
+}
+
+.requirements h3 {
+  margin-bottom: 10px;
+}
+
+.requirements ul {
+  padding-left: 20px;
+}
+
+/* CONTENT */
+.course-content h2 {
+  margin-bottom: 15px;
+}
+
+.section {
+  border: 1px solid #e5e7eb;
+  border-radius: 10px;
+  margin-bottom: 12px;
+}
+
+.section-header {
+  padding: 15px 20px;
+  background: #111827;
+  color: white;
+  display: flex;
+  justify-content: space-between;
+  cursor: pointer;
+}
+
+.lectures {
+  padding: 15px;
+  background: #fff;
+}
+
+.lecture {
+  margin-bottom: 20px;
+}
+
+.lecture-title {
+  font-weight: 500;
+  margin-bottom: 8px;
+  display: flex;
+  justify-content: space-between;
+}
+
+.duration {
+  color: gray;
+  font-size: 13px;
+}
+
+video {
+  width: 100%;
+  border-radius: 8px;
+  margin-bottom: 8px;
+}
+
+.download-btn {
+  display: inline-block;
+  padding: 8px 12px;
+  background: #10b981;
+  color: white;
+  border-radius: 6px;
+  text-decoration: none;
+  font-size: 14px;
+}
+
+/* RIGHT */
+.right-panel img {
+  width: 100%;
+  border-radius: 14px;
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
+}
+
+/* MOBILE */
+@media (max-width: 900px) {
+  .course-layout {
+    grid-template-columns: 1fr;
+  }
+}

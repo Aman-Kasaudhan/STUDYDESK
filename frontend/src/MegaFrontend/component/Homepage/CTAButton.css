@@ -1,0 +1,18 @@
+.cta-btn {
+  display: inline-block;
+  padding: 10px 20px;
+  background-color: gray;
+  color: white;
+  border-radius: 8px;
+  text-decoration: none; 
+  font-weight: bold;
+  transition: 0.3s;
+  
+}
+
+.cta-btn.active {
+  background-color: yellow;
+  color: black;
+  transform: scale(0.95);
+  cursor: pointer;
+}

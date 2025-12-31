@@ -1,0 +1,71 @@
+.Ai-container {
+  width: 90%;
+  margin: 20px auto;
+}
+
+.title {
+  /* text-align: center; */
+  font-size: 24px;
+  margin-bottom: 20px;
+}
+
+.Ai-list {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 25px;
+  align-items: start;
+  cursor: pointer;
+  
+}
+
+/* Animation keyframes */
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(40px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Course card styling */
+.Ai-card {
+  background: #fff;
+  border-radius: 12px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  text-align: center;
+  padding: 10px;
+  width: 250px;
+  /* transition: transform 0.25s ease, box-shadow 0.25s ease; */
+  /* animation: fadeInUp 0.6s ease forwards; */
+  position: relative; /* isolate stacking context */
+  z-index: 0;
+  animation-fill-mode: both;
+}
+
+.Ai-card:hover {
+  transform: scale(1.04);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+  z-index: 10; /* bring hovered card above others */
+}
+
+.Ai-image {
+  width: 100%;
+  height: 170px;
+  object-fit: cover;
+  border-radius: 8px;
+}
+
+.Ai-name {
+  font-size: 16px;
+  font-weight: 600;
+  margin-top: 8px;
+}
+
+.Ai-price {
+  color: #007bff;
+  font-weight: 500;
+  margin-top: 5px;
+}

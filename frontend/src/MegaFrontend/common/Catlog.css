@@ -1,0 +1,54 @@
+
+.catalog-container {
+  padding: 20px;
+  font-family: Arial, sans-serif;
+  background-color: aliceblue;
+  height:100vh;
+}
+
+.course-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
+}
+
+.course-card {
+  width: 250px;
+  background: #fff;
+  border-radius: 10px;
+  overflow: hidden;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.15);
+  transition: transform 0.2s ease;
+}
+
+.course-card:hover {
+  transform: translateY(-5px);
+}
+
+.course-thumbnail {
+  width: 100%;
+  height: 150px;
+  object-fit: cover;
+}
+
+.course-info {
+  padding: 10px;
+}
+
+.course-name {
+  font-size: 18px;
+  font-weight: bold;
+  margin: 5px 0;
+}
+
+.course-price {
+  color: #27ae60;
+  font-weight: bold;
+}
+
+.course-instructor,
+.course-category {
+  font-size: 14px;
+  color: #555;
+}
+ 

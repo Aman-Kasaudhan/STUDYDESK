@@ -1,0 +1,77 @@
+.container6 {
+  max-width: 1400px;
+  margin: auto;
+  padding: 80px 60px;
+  display: grid;
+  grid-template-columns: 1fr 1.2fr;
+  gap: 60px;
+  align-items: center;
+  font-family: "Inter", sans-serif;
+}
+
+/* IMAGE */
+.container6-image img {
+  width: 100%;
+  max-width: 450px;
+  border-radius: 20px;
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.15);
+}
+
+/* CONTENT */
+.container6-content {
+  text-align: left;
+}
+
+.container6-title {
+  font-size: 36px;
+  font-weight: 700;
+  margin-bottom: 15px;
+}
+
+.highlight {
+  color: #4f46e5;
+}
+
+.container6-desc {
+  font-size: 16px;
+  color: #555;
+  line-height: 1.6;
+  margin-bottom: 25px;
+}
+
+.container6-btn {
+  margin-top: 10px;
+}
+
+/* RESPONSIVE */
+@media (max-width: 900px) {
+  .container6 {
+    grid-template-columns: 1fr;
+    padding: 50px 25px;
+    text-align: center;
+  }
+
+  .container6-content {
+    text-align: center;
+  }
+
+  .container6-image img {
+    margin: auto;
+  }
+}
+.become-instructor-btn {
+  background: linear-gradient(135deg, #facc15, #fde047);
+  color: #1f2937;
+  padding: 10px 20px;
+  border-radius: 22px;
+  font-size: 14px;
+  font-weight: 600;
+  border: none;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.become-instructor-btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 20px rgba(250, 204, 21, 0.4);
+}

@@ -1,0 +1,150 @@
+.builder-container {
+  padding: 30px;
+  background: #0f0f0f;
+  color: #fff;
+  min-height: 100vh;
+}
+
+.section-card {
+  background: #1a1a1a;
+  padding: 20px;
+  border-radius: 14px;
+  margin-bottom: 30px;
+  border: 1px solid #2c2c2c;
+}
+
+.section-header {
+  display: flex;
+  gap: 10px;
+  align-items: center;
+}
+
+.section-input {
+  flex: 1;
+  background: #121212;
+  border: 1px solid #333;
+  color: #fff;
+  padding: 10px;
+  border-radius: 8px;
+}
+
+/* ===== Lecture ===== */
+.lecture-card {
+  background: #121212;
+  border-radius: 12px;
+  margin-top: 12px;
+  border: 1px solid #2c2c2c;
+  overflow: hidden;
+}
+
+.lecture-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 12px 16px;
+  background: #1b1b1b;
+}
+
+.lecture-title {
+  font-weight: 600;
+}
+
+.lecture-header-actions {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.lecture-body {
+  padding: 16px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  animation: slideDown 0.25s ease;
+}
+
+.lecture-input,
+.lecture-textarea {
+  background: #000;
+  border: 1px solid #333;
+  color: #fff;
+  padding: 10px;
+  border-radius: 8px;
+}
+
+.lecture-textarea {
+  resize: none;
+  min-height: 70px;
+}
+
+.lecture-actions {
+  display: flex;
+  gap: 10px;
+}
+ 
+/* ===== Buttons ===== */
+.btn {
+  padding: 8px 16px;
+  border-radius: 20px;
+  border: none;
+  cursor: pointer;
+  font-size: 14px;
+}
+
+.btn-save { background: #3f51b5; color: #fff; margin-top: -10px;}
+.btn-update1 { background: #1db954; color: #fff; margin-top: -10px; }
+.btn-update { background: #1db954; color: #fff;  }
+.btn-upload { background: #ff9800; color: #fff;  }
+.btn-delete1 { background: #e53935; color: #fff;margin-top: -10px; }
+.btn-delete { background: #e53935; color: #fff; }
+
+.btn-toggle {
+  background: #333;
+  color: #fff;
+  /* width: 2px; */
+  height: 29px;
+  border-radius: 30%;
+}
+
+.btn-add-lecture {
+  margin-top: 12px;
+  background: #333;
+  color: #fff;
+}
+
+.btn-add-section {
+  position: fixed;
+  bottom: 20px;
+  left: 20px;
+  background: linear-gradient(135deg, #ff9800, #ff5722);
+  color: #fff;
+}
+
+.btn-next {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  background: linear-gradient(135deg, #4caf50, #1db954);
+  color: #fff;
+}
+
+/* ===== Uploaded Badge ===== */
+.lecture-uploaded {
+  background: linear-gradient(135deg, #1db954, #1ed760);
+  color: #fff;
+  padding: 5px 12px;
+  border-radius: 20px;
+  font-size: 12px;
+}
+
+/* ===== Animation ===== */
+@keyframes slideDown {
+  from {
+    opacity: 0;
+    transform: translateY(-6px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}

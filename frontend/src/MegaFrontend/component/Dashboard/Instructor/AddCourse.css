@@ -1,0 +1,21 @@
+.courseTips{
+    /* height:0px; */
+    margin:10px 40px 50px ;
+    background-color:rgb(175, 55, 55);
+    padding: 20px ;
+    border: 1px solid black;
+    border-radius: 1cm;
+}
+
+.heading{
+    margin-left: 80px;
+    /* height:30px; */
+
+}
+
+.backButton{
+    margin:20px;
+    cursor: pointer;
+     
+    border-radius: 10px;
+}

@@ -1,0 +1,43 @@
+.coupan-container {
+  width: 50%;
+  overflow: hidden;
+  background: #f9fafb;
+  border: 1px solid #ddd;
+  padding: 10px 0;
+  border-radius: 30px;
+}
+
+.coupan-slider {
+  display: flex;
+  gap: 20px;
+  animation: slide 4s linear infinite;
+}
+
+.coupan-card {
+  min-width: 200px;
+  background: white;
+  border: 1px solid #ccc;
+  border-radius: 12px;
+  padding: 15px;
+  box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+  text-align: center;
+  flex-shrink: 0;
+}
+
+.coupan-card h3 {
+  margin: 0;
+  color: #e63946;
+}
+
+.coupan-card .code {
+  display: inline-block;
+  margin-top: 8px;
+  font-weight: bold;
+  color: #2a9d8f;
+}
+
+/* Continuous sliding animation */
+@keyframes slide {
+  0% { transform: translateX(0); }
+  100% { transform: translateX(-50%); }
+}

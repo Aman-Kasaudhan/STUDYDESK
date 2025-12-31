@@ -1,0 +1,130 @@
+/* Layout shell */
+.contact{
+    padding-top: 80px;
+     background-color: #090d11;
+
+}
+.contact1 {
+  max-width: 700px;
+  margin: 0px  auto 0px auto;
+  padding:0px 40px ;
+  background:gray;
+  /* background-color: rgb(17,23,76); */
+  border-radius: 16px;
+  box-shadow: 0 6px 20px rgba(0,0,0,0.1);
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+}
+
+.contact1 * { box-sizing: border-box; }
+.contactText{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.contact1 h2 {
+  font-size: 32px;
+  margin-bottom: 8px;
+  text-align: center;
+  color: #222;
+}
+
+.contact1 > p {
+  text-align: center;
+  font-size: 16px;
+  color: #555;
+  margin-bottom: 28px;
+}
+
+/* Form grid */
+.contact1 form {
+  display: grid;
+  gap: 20px;
+}
+
+/* First/Last name row */
+.contacName {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 20px;
+}
+
+/* Field blocks */
+.firstName,
+.lastName,
+.contact1 form > div {
+  display: flex;
+  flex-direction: column;
+}
+
+/* Labels */
+.contact1 label {
+  display: block;
+  margin-bottom: 8px;
+  font-weight: 600;
+  color: #333;
+  line-height: 1.2;
+}
+
+.contact1 label sup {
+  color: #e02828;
+  margin-left: 2px;
+  font-size: 0.75em;
+}
+
+/* Controls */
+.contact1 input,
+.contact1 select,
+.contact1 textarea {
+  width: 100%;
+  padding: 12px 14px;
+  border: 1px solid #ccc;
+  border-radius: 10px;
+  font-size: 15px;
+  outline: none;
+  transition: border-color 0.2s ease;
+}
+
+.contact1 input:focus,
+.contact1 select:focus,
+.contact1 textarea:focus {
+  border-color: #007bff;
+}
+
+/* Phone row (code + number inline, aligned) */
+.phoneRow {
+  display: flex;
+  gap: 10px;
+  align-items: center;
+}
+
+.phoneRow select {
+  flex: 0 0 110px;       /* fixed width for code */
+}
+
+.phoneRow input[type="tel"] {
+  flex: 1;               /* takes remaining space */
+}
+
+/* Button */
+.contact1 button {
+  padding: 14px;
+  background: #007bff;
+  color: #fff;
+  font-size: 16px;
+  font-weight: 600;
+  border: none;
+  border-radius: 10px;
+  cursor: pointer;
+  transition: background 0.2s ease;
+}
+
+.contact1 button:hover { background: #005ecb; }
+
+/* Responsive */
+@media (max-width: 600px) {
+  .contacName {
+    grid-template-columns: 1fr;
+  }
+}

@@ -1,0 +1,102 @@
+/* Container styles */
+.login-container {
+  max-width: 400px;
+  margin: 50px auto;
+  padding: 2rem;
+  background: linear-gradient(135deg, #f8f9ff, #e6ecff);
+  border-radius: 15px;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+  font-family: "Poppins", sans-serif;
+  text-align: center;
+  color: #1a1a2e;
+}
+
+/* Headings */
+.login-container h1 {
+  font-size: 1.6rem;
+  color: #0f3460;
+  margin-bottom: 0.5rem;
+}
+
+.login-container h3 {
+  font-size: 1rem;
+  font-weight: 400;
+  color: #16213e;
+  margin: 0.3rem 0;
+}
+
+.login-container h2 {
+  font-size: 1.4rem;
+  margin: 1.5rem 0;
+  color: #0f3460;
+}
+
+/* Labels */
+.login-container label {
+  display: block;
+  text-align: left;
+  font-weight: 500;
+  margin-bottom: 0.3rem;
+  color: #16213e;
+}
+
+/* Inputs */
+.login-container input {
+  width: 100%;
+  padding: 0.6rem;
+  border-radius: 8px;
+  border: 1px solid #a5b4fc;
+  outline: none;
+  font-size: 1rem;
+  transition: 0.3s ease;
+  background-color: #fff;
+}
+
+.login-container input:focus {
+  border-color: #6366f1;
+  box-shadow: 0 0 5px rgba(99, 102, 241, 0.5);
+}
+
+/* Eye icon for password */
+.login-container span {
+  position: relative;
+  margin-left: -35px;
+  cursor: pointer;
+  font-size: 1.2rem;
+  color: #555;
+  vertical-align: middle;
+}
+
+/* Button */
+.login-container button {
+  width: 100%;
+  padding: 0.8rem;
+  background: linear-gradient(90deg, #6366f1, #4338ca);
+  color: white;
+  font-size: 1rem;
+  font-weight: bold;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: 0.3s ease;
+}
+
+.login-container button:hover {
+  background: linear-gradient(90deg, #4f46e5, #312e81);
+  transform: scale(1.02);
+}
+
+/* Hover effect for container */
+.login-container:hover {
+  box-shadow: 0 12px 25px rgba(99, 102, 241, 0.3);
+}
+.seepass{
+    /* position: relative; */
+    margin: 90px;
+}
+.resetPassword{
+  position: relative;
+  bottom: 15px;
+  left: 100px;
+  
+}

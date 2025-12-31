@@ -1,0 +1,112 @@
+/* Container */
+form {
+  width: 70%;
+  max-width: 800px;
+  margin: 30px auto;
+  padding: 25px;
+  background: #ffffff;
+  border-radius: 12px;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+
+  /* Fade-in animation */
+  animation: fadeIn 0.8s ease-in-out;
+}
+
+/* Labels */
+form label {
+  display: block;
+  font-weight: 600;
+  margin-bottom: 6px;
+  color: #333;
+}
+
+/* Inputs, Select, Textarea */
+form input,
+form select,
+form textarea {
+  width: 90%;
+  padding: 12px 15px;
+  border-radius: 8px;
+  border: 1px solid #ccc;
+  font-size: 14px;
+  outline: none;
+  transition: all 0.3s ease;
+}
+
+/* Focus effect */
+form input:focus,
+form select:focus,
+form textarea:focus {
+  border-color: #007bff;
+  box-shadow: 0 0 8px rgba(0, 123, 255, 0.3);
+}
+
+/* Submit button */
+/* General button style */
+.all {
+  padding: 10px 18px;
+  border: none;
+  border-radius: 8px;
+  font-size: 14px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  margin-right: 10px;
+}
+
+/* Save button */
+.buttonSave{
+  background-color: #007bff;
+  color: #fff;
+}
+
+.buttonSave:hover {
+  background-color: #0056b3;
+  transform: scale(1.05);
+}
+
+/* Edit button */
+.buttonEdit.edit-mode {
+  background-color: #ffc107;
+  color: #333;
+}
+
+.buttonEdit.edit-mode:hover {
+  background-color: #e0a800;
+  transform: scale(1.05);
+}
+
+/* Next button */
+.buttonNext{
+  background-color: #28a745;
+  color: #fff;
+}
+
+.buttonNext:hover:enabled {
+  background-color: #218838;
+  transform: scale(1.05);
+}
+
+/* Disabled state */
+.all:disabled {
+  background-color: #ccc;
+  cursor: not-allowed;
+  transform: none;
+}
+
+
+/* Animation keyframes */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(15px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}

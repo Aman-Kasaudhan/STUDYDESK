@@ -1,0 +1,94 @@
+.steps-container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  position: relative;
+  margin: 20px auto;
+  width: 80%; /* smaller container */
+ 
+}
+/* Outer container */
+.stepper-container {
+  width: 80%;         /* Adjust width */
+  max-width: 900px;   /* Prevents it from stretching too much */
+  height: 120px;      /* Fixed height */
+  background-color: #285481; /* Light background */
+  margin: 30px auto;  /* Center horizontally */
+  padding: 20px;
+  border-radius: 12px;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.1); /* Subtle shadow */
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+}
+
+
+/* The dotted line across all steps */
+.steps-container::before {
+  content: "";
+  position: absolute;
+  top: 50%;
+  left: 20px;   /* shift inward so it starts after the first circle */
+  right: 20px;  /* shift inward so it ends before the last circle */
+  height: 0;
+  border-top: 2px dotted white;
+  z-index: 0;
+  transform: translateY(-50%); /* keep perfectly centered */
+}
+
+/* Each step circle */
+.step-circle {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-weight: bold;
+  z-index: 1; /* stays above the dotted line */
+  background-color: white;
+  border: 2px solid #bbb;
+}
+
+/* States */
+.step-active {
+  border-color: yellow;
+  background-color: yellow;
+  color: white;
+}
+
+.step-completed {
+    border-color: rgb(212, 212, 8);
+  background-color: rgb(228, 228, 13);
+  color: white;
+}
+
+.step-future {
+  border-color: white;
+  background-color: white;
+  color: black;
+}
+
+/* Titles under steps */
+.step-titles {
+  display: flex;
+  
+  width: 95%; /* match container width */
+  margin: -9px 20px;
+  
+  gap:60px;
+}
+
+.step-title {
+  font-size: 14px;
+  color:white ;
+  text-align: center;
+  /* text-shadow: #bbb; */
+  
+  flex: 1;
+}
+
+.step-title-active {
+  font-weight: bold;
+  color: #007bff;
+}
