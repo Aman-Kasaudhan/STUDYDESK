@@ -4,6 +4,7 @@ import axios from "axios";
 import { toast } from "react-toastify";
 import { useNavigate } from "react-router-dom";
 import { setUser } from "../../../slice/profileSlice";
+import { showLoader,hideLoader } from "../../../slice/loaderSlice";
 function EditEmail() {
   const { user } = useSelector((state) => state.profile);
   const [step, setStep] = useState(1); // 1=verify old, 2=new email, 3=verify new
@@ -27,48 +28,67 @@ const dispatch=useDispatch();
 
   // Send OTP to current email
   const sendOldOtp = async () => {
+    dispatch(showLoader())
     try {
-      await axios.post("http://localhost:4000/api/v1/updateOtp/sendotp-update", {
+      await axios.post(`${process.env.REACT_APP_BASE_URL}/updateOtp/sendotp-update`, {
         email: user?.email,
       });
 
       toast.success("OTP sent to current email");
       handleStartResendTimer();
+    dispatch(hideLoader())
+
     } catch (err) {
       toast.error("Failed to send OTP");
+    dispatch(hideLoader())
+      
     }
   };
 
   const verifyOldOtp = async () => {
+    dispatch(showLoader())
+
     try {
-      const res = await axios.post("http://localhost:4000/api/v1/updateOtp/verify-old-otp", {
+      const res = await axios.post(`${process.env.REACT_APP_BASE_URL}/updateOtp/verify-old-otp`, {
         email: user?.email,
         otp,
       });
       if (res.data.success) {
         toast.success("Old email verified");
         setStep(2);
+    dispatch(hideLoader())
+
       }
     } catch (err) {
       toast.error("Invalid OTP");
+    dispatch(hideLoader())
+
     }
   };
 
   const sendNewEmailOtp = async () => {
+    dispatch(showLoader())
+
     try {
-      await axios.post("http://localhost:4000/api/v1/updateOtp/send-new-email-otp", {
+      await axios.post(`${process.env.REACT_APP_BASE_URL}/updateOtp/send-new-email-otp`, {
        email: newEmail,
       });
       toast.success("OTP sent to new email");
       setStep(3);
+    dispatch(hideLoader())
+
     } catch (err) {
       toast.error("User already registered. Please Enter new email.");
+    dispatch(hideLoader())
+
     }
   };
 
   const verifyNewOtpAndUpdate = async () => {
+    dispatch(showLoader())
+
     try {
-      await axios.post("http://localhost:4000/api/v1/updateOtp/update-email", {
+      await axios.post(`${process.env.REACT_APP_BASE_URL}/updateOtp/update-email`, {
         oldEmail: user?.email,
         newEmail,
       });
@@ -79,13 +99,17 @@ const dispatch=useDispatch();
             })
           );
       toast.success("Email updated successfully!");
-      // navigate("/")
-    //   setStep(1);
-    //   setOtp("");
-    //   setNewEmail("");
-    //   setNewOtp("");
+    dispatch(hideLoader())
+
+      navigate("/")
+      // setStep(1);
+      setOtp("");
+      setNewEmail("");
+      setNewOtp("");
     } catch (err) {
       toast.error("Email update failed");
+    dispatch(hideLoader())
+
     }
   };
 

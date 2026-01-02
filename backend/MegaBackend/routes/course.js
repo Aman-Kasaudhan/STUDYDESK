@@ -8,7 +8,7 @@ const {createSection,updateSection,deleteSection}=require("../controller/section
 const {createSubSection,updateSubSection,deleteSubSection}=require("../controller/subsection");
 const {createRating,getAveragerating,getAllRating}=require("../controller/ratingAndReview")
 
-const {auth,isStudent,isInstructor }=require("../middleware/auth")
+const {auth,isStudent,isInstructor ,isAdmin}=require("../middleware/auth")
 
 router.post("/createCourse",auth,isInstructor,createCourse);
 router.put("/updateCourse/:id",auth,isInstructor,updateCourse);
@@ -34,7 +34,7 @@ router.post("/createRating",auth,isStudent,createRating);
 router.get("/getAveragerating",getAveragerating)
 router.get("/getAllRating",getAllRating)
 
-router.post("/createCategory",auth,isInstructor,createCategory);
+router.post("/createCategory",auth,isAdmin,createCategory);
 router.get("/showCategory",showCategory)
 router.get("/categoryPageDetail",categoryPageDetail)
 // router.get("/categoryByid/:id",categoryByid)

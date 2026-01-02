@@ -1,10 +1,10 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
 import { useParams } from "react-router-dom";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import "./EnrollFullCourse.css";
 import { toast } from "react-toastify";
-
+import { showLoader,hideLoader } from "../../slice/loaderSlice";
 function EnrollFullCourse() {
   const { id } = useParams();
   const { token } = useSelector((state) => state.auth);
@@ -12,20 +12,28 @@ function EnrollFullCourse() {
   const [data, setData] = useState(null);
   const [openSection, setOpenSection] = useState(null);
   const [loading, setLoading] = useState(true);
-
+const dispatch=useDispatch()
   useEffect(() => {
     const fetchCourse = async () => {
+              dispatch(showLoader())
+      
       try {
         const res = await axios.get(
-          `http://localhost:4000/api/v1/course/getCourseDetailByCourseId/${id}`,
+         `${process.env.REACT_APP_BASE_URL}/course/getCourseDetailByCourseId/${id}`,
           { headers: { Authorization: `Bearer ${token}` } }
         );
         setData(res.data.courseDetail);
         // console.log(data.courseContent[0].subSections[0].videourl)
+                dispatch(hideLoader())
+        
       } catch (error) {
         toast.error("Failed to load course");
+                dispatch(hideLoader())
+        
       } finally {
         setLoading(false);
+                dispatch(hideLoader())
+        
       }
     };
 

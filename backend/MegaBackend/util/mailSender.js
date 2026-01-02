@@ -21,7 +21,7 @@ exports.mailSender=async (email,title,body)=>{
 
         let info=await transporter.sendMail({
               
-            from:`"Aman 👨‍💻" <${process.env.MAIL_USER}>`,
+            from:`"StudyDesk 👨‍💻" <${process.env.MAIL_USER}>`,
             to:email,
             subject:title,
             html:body,

@@ -3,12 +3,13 @@ import { toast } from "react-toastify";
 import axios from "axios";
 import { NavLink } from "react-router-dom";
 import "./ForgetPassword.css";
-
+import { showLoader,hideLoader } from "../../slice/loaderSlice";
+import { useDispatch } from "react-redux";
 function ForgetPassword() {
   const [email, setEmail] = useState("");
   const [emailSent, setEmailSent] = useState(false);
   const [loading, setLoading] = useState(false);
-
+const dispatch=useDispatch()
   const sendMail = async (e) => {
     e.preventDefault();
     if (!email) {
@@ -17,9 +18,11 @@ function ForgetPassword() {
     }
 
     try {
+              dispatch(showLoader())
+      
       setLoading(true);
       const res = await axios.post(
-        "http://localhost:4000/api/v1/auth/resetPasswordToken",
+        `${process.env.REACT_APP_BASE_URL}/auth/resetPasswordToken`,
         { email }
       );
       toast.success(res.data.message);
@@ -30,6 +33,8 @@ function ForgetPassword() {
       );
     } finally {
       setLoading(false);
+              dispatch(hideLoader())
+      
     }
   };
 

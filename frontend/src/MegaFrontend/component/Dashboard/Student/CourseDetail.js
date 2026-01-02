@@ -7,7 +7,7 @@ import { useDispatch ,useSelector} from "react-redux";
 import { addToCart } from "../../../slice/cartSlice";import { Link } from "react-router-dom"
 import { FaShoppingCart } from "react-icons/fa";
 
-
+import { showLoader,hideLoader } from "../../../slice/loaderSlice";
 function CourseDetail() {
   const {user}=useSelector( (state)=>state.profile)
      const {totalItems}=useSelector( (state)=>state.cart)
@@ -16,12 +16,14 @@ function CourseDetail() {
   const [course, setCourse] = useState(null); // ✅ name should be singular
 //   console.log("Course ID from params:", id);
 const dispatch = useDispatch();
-
+console.log(id)
   useEffect(() => {
+              dispatch(showLoader())
+    
     async function fetchCourseData() {
       try {
         const res = await axios.get(
-          `http://localhost:4000/api/v1/course/getCourseDetailByCourseId/${id}`
+         `${process.env.REACT_APP_BASE_URL}/course/getCourseDetailByCourseId/${id}`
         );
 
         // Assuming your backend returns:
@@ -33,9 +35,13 @@ const dispatch = useDispatch();
         }
  
         setCourse(courseData);
+                  dispatch(hideLoader())
+        
       } catch (err) {
         console.error("Error fetching course:", err);
         toast.error("Unable to fetch course");
+                 dispatch(hideLoader())
+        
       }
     }
 

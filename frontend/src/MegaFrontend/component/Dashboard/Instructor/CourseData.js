@@ -36,7 +36,7 @@ function CreateCourseForm() {
   
   // Fetch categories once on mount
   useEffect(() => {
-    axios.get("http://localhost:4000/api/v1/course/showCategory")
+    axios.get(`${process.env.REACT_APP_BASE_URL}/course/showCategory`)
       .then(response => setCategories(response.data.allCategory || []))
       .catch(console.error);
   }, []);
@@ -174,7 +174,7 @@ if (savedForm.thumbnailImage instanceof File) {
     if (course?._id) {
       // Update existing course
       response = await axios.put(
-        `http://localhost:4000/api/v1/course/updateCourse/${course?._id}`,
+        `${process.env.REACT_APP_BASE_URL}/course/updateCourse/${course?._id}`,
         formData,
         { headers: { Authorization: `Bearer ${token}`, "Content-Type": "multipart/form-data" } }
       );
@@ -182,7 +182,7 @@ if (savedForm.thumbnailImage instanceof File) {
      else {
       // Create new course
       response = await axios.post(
-        "http://localhost:4000/api/v1/course/createCourse",
+       `${process.env.REACT_APP_BASE_URL}/course/createCourse`,
         formData,
         { 
           headers:

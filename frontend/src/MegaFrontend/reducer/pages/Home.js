@@ -39,7 +39,7 @@ function contact(){
   </div>
                 <div>
                 {
-                    user && user?.accountType!="Instructor" &&(
+                    user && user?.accountType=="Student" &&(
                         <Link to="/cart-items" className="cart-icon" title="Your Cart">
     <FaShoppingCart size={29} style={{ cursor: "pointer", marginRight: "15px", color:"lightgrey"}} />
                            
@@ -71,10 +71,10 @@ function contact(){
               
                <div className='btn'>
 
-                <div className='btn1'>
+                {!token && <div className='btn1'>
                    <p>Become an Instructor</p>
                    <FaArrowRight/>
-                </div>
+                </div>}
                
                 </div>
              </Link>

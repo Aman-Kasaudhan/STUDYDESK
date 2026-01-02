@@ -35,7 +35,7 @@ try {
   dispatch(showLoader());
 
   await axios.post(
-    "http://localhost:4000/api/v1/course/enrollMultipleCourseStudent",
+   `${process.env.REACT_APP_BASE_URL}/course/enrollMultipleCourseStudent`,
     {
       courseIds: cart.map((c) => c._id),
     },
@@ -62,7 +62,7 @@ finally {
 
     try{
     await axios.post(
-  "http://localhost:4000/api/v1/course/enroll-multiple",
+  `${process.env.REACT_APP_BASE_URL}/course/enroll-multiple`,
   { courseIds: cart.map((c) => c._id),
     userId:user?._id
    },   // array

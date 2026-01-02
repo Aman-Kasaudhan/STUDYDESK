@@ -1,17 +1,20 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
-
+import { useDispatch } from "react-redux";
+import { showLoader,hideLoader } from "../../../slice/loaderSlice";
 const PurchaseHistory = () => {
   const [history, setHistory] = useState([]);
   const [loading, setLoading] = useState(true);
-
+  const dispatch=useDispatch()
   useEffect(() => {
     const fetchPurchaseHistory = async () => {
+      dispatch(showLoader())
+     
       try {
         const token = localStorage.getItem("token");
 
         const res = await axios.get(
-          "http://localhost:4000/api/v1/course/purchase",
+         `${process.env.REACT_APP_BASE_URL}/course/purchase`,
           {
             headers: {
               Authorization: `Bearer ${token}`,
@@ -21,9 +24,13 @@ const PurchaseHistory = () => {
 
         setHistory(res.data.data);
         setLoading(false);
+        dispatch(hideLoader())
+        
       } catch (error) {
         console.error(error);
         setLoading(false);
+        dispatch(hideLoader())
+
       }
     };
 

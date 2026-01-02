@@ -17,7 +17,7 @@ function Navbar(){
 const [categories,setCategories]=useState([])
 
  useEffect(() => {
-    axios.get("http://localhost:4000/api/v1/course/showCategory")
+    axios.get(`${process.env.REACT_APP_BASE_URL}/course/showCategory`)
       .then(response => setCategories(response.data.allCategory || []))
       .catch(console.error);
   }, []);

@@ -27,8 +27,8 @@ async function submitHandler(e) {
   e.preventDefault();
   dispatch(showLoader())
   try {
-    await axios.post("http://localhost:4000/api/v1/contact/admin", formData);
-    await axios.post("http://localhost:4000/api/v1/contact/send/whatsapp", formData);
+    await axios.post(`${process.env.REACT_APP_BASE_URL}/contact/admin`, formData);
+    await axios.post(`${process.env.REACT_APP_BASE_URL}/contact/send/whatsapp`, formData);
 
     toast.success("Message sent successfully!");
     dispatch(hideLoader())

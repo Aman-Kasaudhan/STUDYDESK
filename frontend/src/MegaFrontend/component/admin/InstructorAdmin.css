@@ -1,0 +1,222 @@
+.admin-instructors {
+  padding: 30px;
+  background: #f8f9fc;
+  min-height: 100vh;
+}
+
+.admin-instructors h2 {
+  margin-bottom: 25px;
+  color: #1f2937;
+}
+
+/* Grid */
+.instructor-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(340px, 1fr));
+  gap: 22px;
+}
+
+/* Card */
+.instructor-card {
+  background: #ffffff;
+  border-radius: 16px;
+  padding: 20px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+  transition: transform 0.25s ease, box-shadow 0.25s ease;
+}
+
+.instructor-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 15px 40px rgba(0, 0, 0, 0.12);
+}
+
+/* Header */
+.instructor-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+}
+
+.instructor-header h3 {
+  margin: 0;
+  color: #111827;
+}
+
+.email {
+  font-size: 14px;
+  color: #6b7280;
+}
+
+/* Status badges */
+.status {
+  display: flex;
+  gap: 8px;
+}
+
+.badge {
+  padding: 4px 10px;
+  border-radius: 999px;
+  font-size: 12px;
+  font-weight: 600;
+}
+
+.badge.verified {
+  background: #dcfce7;
+  color: #15803d;
+}
+
+.badge.pending {
+  background: #fef3c7;
+  color: #92400e;
+}
+
+.badge.active {
+  background: #e0e7ff;
+  color: #3730a3;
+}
+
+.badge.blocked {
+  background: #fee2e2;
+  color: #991b1b;
+}
+
+/* Actions */
+.actions {
+  margin: 15px 0;
+  display: flex;
+  gap: 10px;
+}
+
+.btn {
+  padding: 7px 14px;
+  border-radius: 8px;
+  border: none;
+  font-size: 14px;
+  cursor: pointer;
+  font-weight: 500;
+}
+
+.btn.verify {
+  background: #22c55e;
+  color: white;
+}
+
+.btn.verify:hover {
+  background: #16a34a;
+}
+
+.btn.block {
+  background: #ef4444;
+  color: white;
+}
+
+.btn.block:hover {
+  background: #dc2626;
+}
+
+/* Courses */
+.courses h4 {
+  margin-bottom: 10px;
+  color: #1f2937;
+}
+
+.course-item {
+  padding: 10px;
+  background: #f1f5f9;
+  border-radius: 10px;
+  margin-bottom: 8px;
+}
+
+.students {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  margin-top: 6px;
+}
+
+.student-chip {
+  background: #e5e7eb;
+  padding: 4px 10px;
+  border-radius: 999px;
+  font-size: 12px;
+}
+
+.empty {
+  font-size: 13px;
+  color: #6b7280;
+}
+
+
+/* ===== Drawer Overlay ===== */
+.drawer-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.45);
+  display: flex;
+  justify-content: flex-end;
+  z-index: 2000;
+}
+
+/* ===== Drawer ===== */
+.drawer {
+  width: 420px;
+  max-width: 90%;
+  background: #ffffff;
+  height: 100%;
+  padding: 20px;
+  box-shadow: -10px 0 30px rgba(0, 0, 0, 0.25);
+  animation: slideIn 0.3s ease forwards;
+  overflow-y: auto;
+}
+
+@keyframes slideIn {
+  from {
+    transform: translateX(100%);
+  }
+  to {
+    transform: translateX(0);
+  }
+}
+
+/* Drawer header */
+.drawer-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.drawer-header h3 {
+  margin: 0;
+  color: #111827;
+}
+
+.close-btn {
+  background: transparent;
+  border: none;
+  font-size: 20px;
+  cursor: pointer;
+}
+
+.drawer-email {
+  font-size: 14px;
+  color: #6b7280;
+  margin-bottom: 15px;
+}
+
+/* Drawer courses */
+.drawer-course {
+  background: #f1f5f9;
+  padding: 12px;
+  border-radius: 10px;
+  margin-bottom: 10px;
+}
+
+/* View button */
+.btn.view {
+  background: #3b82f6;
+  color: white;
+}
+
+.btn.view:hover {
+  background: #2563eb;
+}

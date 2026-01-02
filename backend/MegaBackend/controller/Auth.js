@@ -143,15 +143,16 @@ if (!mostRecentOtp.createdAt) {
         image:`https://api.dicebear.com/5.x/initials/svg?seed=${firstName}
         ${lastName}`
     })
-    const payload={
-      id:user._id,
-      accountType:user.accountType,
-              email:user.email,
-          }
+  const token = jwt.sign(
+  {
+    id: user._id,
+    email: user.email,
+    accountType: user.accountType, // 🔥 REQUIRED
+  },
+  process.env.JWT_SECRET,
+  { expiresIn: "24h" }
+);
 
-              let token=jwt.sign(payload,process.env.JWT_SECRET,{
-                  expiresIn:"2h",
-              })
   
             //   user=user.toObject();
               user.token=token;
@@ -215,15 +216,16 @@ catch(err){
           // verify password and generate jwt
           if(await bcrypt.compare(password,user.password)){
               
-            const payload={
-              id:user._id,
-              accountType:user.accountType,
-              email:user.email,
-          }
+           const token = jwt.sign(
+  {
+    id: user._id,
+    email: user.email,
+    accountType: user.accountType, // 🔥 REQUIRED
+  },
+  process.env.JWT_SECRET,
+  { expiresIn: "24h" }
+);
 
-              let token=jwt.sign(payload,process.env.JWT_SECRET,{
-                  expiresIn:"2h",
-              })
   
             //   user=user.toObject();
               user.token=token;

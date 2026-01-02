@@ -7,6 +7,7 @@ import axios from "axios";
 import IconBtn from "../../common/Iconbtn";
 import "./Setting.css";
 import "../../common/Popup.css";
+import { showLoader,hideLoader } from "../../slice/loaderSlice";
 import { logout } from "../../slice/authSlice";
 import { setUser } from "../../slice/profileSlice";
 function Setting() {
@@ -65,8 +66,10 @@ function Setting() {
   // Handle About Save
   // console.log(user);
   const saveAbout = async () => {
+            dispatch(showLoader())
+    
     try {
-      await axios.post("http://localhost:4000/api/v1/profile/create-profile", {
+      await axios.post(`${process.env.REACT_APP_BASE_URL}/profile/create-profile`, {
         userId:user?.additionalDetail,
         about: aboutText,
       },
@@ -88,15 +91,21 @@ function Setting() {
     );
       toast.success("About updated successfully");
       setShowAboutPopup(false);
+              dispatch(hideLoader())
+      
     } catch (err) {
       toast.error("Failed to update about");
+              dispatch(hideLoader())
+      
     }
   };
 
   // Handle Personal Details Save
   const savePersonal = async () => {
+            dispatch(showLoader())
+    
     try {
-      await axios.post("http://localhost:4000/api/v1/profile/create-profile", {
+      await axios.post(`${process.env.REACT_APP_BASE_URL}/profile/create-profile`, {
         userId:user?.additionalDetail,
         ...personalData,
       },{
@@ -122,9 +131,13 @@ function Setting() {
 
       toast.success("Profile details updated successfully");
       setShowPersonalEdit(false);
+              dispatch(hideLoader())
+      
     } 
     catch (err) {
       toast.error("Failed to update profile details");
+              dispatch(hideLoader())
+      
     }
   };
 

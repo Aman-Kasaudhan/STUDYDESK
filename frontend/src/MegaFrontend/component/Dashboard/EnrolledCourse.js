@@ -73,23 +73,25 @@
 
 import React, { useEffect, useState } from "react";
 import axios from "axios";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import "./EnrolledCourse.css";
-
+import { showLoader,hideLoader } from "../../slice/loaderSlice";
 function EnrolledCourse() {
   const token = useSelector((state) => state.auth.token);
   const [courses, setCourses] = useState([]);
   const [loading, setLoading] = useState(true);
   const navigate = useNavigate();
-
+const dispatch=useDispatch()
   useEffect(() => {
     if (!token) return;
 
     const fetchEnrolledCourses = async () => {
+            dispatch(showLoader())
+    
       try {
         const res = await axios.get(
-          "http://localhost:4000/api/v1/profile/getEnrolledCourses",
+         `${process.env.REACT_APP_BASE_URL}/profile/getEnrolledCourses`,
           {
             headers: {
               Authorization: `Bearer ${token}`,
@@ -98,12 +100,16 @@ function EnrolledCourse() {
         );
 
         setCourses(res.data?.data || []);
+                dispatch(hideLoader())
+        
       } catch (error) {
         console.error(
-          error.response?.data?.message || "Failed to fetch courses"
-        );
+          error.response?.data?.message || "Failed to fetch courses");
+        dispatch(hideLoader())
       } finally {
         setLoading(false);
+                dispatch(hideLoader())
+        
       }
     };
 

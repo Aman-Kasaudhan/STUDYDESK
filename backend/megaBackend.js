@@ -57,6 +57,7 @@ const paymentRoutes=require("./MegaBackend/routes/payment")
 const courseRoutes=require("./MegaBackend/routes/course")
 const updateOtpRoutes=require("./MegaBackend/routes/updateOtp")
  const contactRoute = require("./MegaBackend/routes/contact");
+ const adminRoutes = require("./MegaBackend/routes/adminRoutes");
  
  // routes
  app.use("/api/v1/auth",userRoutes);
@@ -65,6 +66,7 @@ const updateOtpRoutes=require("./MegaBackend/routes/updateOtp")
  app.use("/api/v1/payment",paymentRoutes);
  app.use("/api/v1/updateOtp",updateOtpRoutes);
  app.use("/api/v1/contact", contactRoute);
+app.use("/api/v1/admin", adminRoutes);
 
 // get  route
 

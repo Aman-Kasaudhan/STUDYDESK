@@ -7,6 +7,7 @@ import InstructorDashboard from './InstructorImageDashboard'
 import { useNavigate } from "react-router-dom";
 import {resetCourse} from '../../../slice/courseSlice'
 import { useState } from "react";
+import { showLoader,hideLoader } from "../../../slice/loaderSlice";
 function PublishForm(){
     const {course}=useSelector((state)=>state.course)
     const {token}=useSelector((state)=>state.auth)
@@ -14,9 +15,7 @@ function PublishForm(){
     const dispatch =useDispatch();
     const navigate=useNavigate();
 // const [publih ,setPublish]=useState("Draft");
-    function goback(){
-      dispatch(-1)
-    }
+   
 
     function draft(){
       navigate("/dashboard/draft")
@@ -24,8 +23,10 @@ function PublishForm(){
       toast.success("This course is Saved in Draft Box")
     }
   async function publish(){
+              dispatch(showLoader())
+    
     try{
-       const res=await axios.put(`http://localhost:4000/api/v1/course/updateCourse/${course?._id}`,
+       const res=await axios.put(`${process.env.REACT_APP_BASE_URL}/course/updateCourse/${course?._id}`,
         {status:"Published"}
         ,{
           headers: {
@@ -35,6 +36,7 @@ function PublishForm(){
         }
     )
         dispatch(setCourse(res.data.course));
+              dispatch(hideLoader())
     
        toast.success("This course is uploaded Successfully")
        dispatch(resetCourse());
@@ -43,6 +45,8 @@ function PublishForm(){
     }
     catch(error){
       toast.warn("Unable to publish course")
+                dispatch(hideLoader())
+      
       return;
     }
     }
@@ -59,7 +63,7 @@ function PublishForm(){
 
       {/* Right side button */}
       <div>
-      <button className="btn go-back" onClick={goback}>Go Back</button>
+      <button className="btn go-back" >Go Back</button>
     </div>
 
     </div>

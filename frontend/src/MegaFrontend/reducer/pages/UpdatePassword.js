@@ -5,9 +5,11 @@ import { toast } from "react-toastify";
 import { NavLink, useParams, useNavigate  } from "react-router-dom";
 import { Navigate } from "react-router-dom";
 import axios from 'axios';
-
+import { showLoader,hideLoader } from "../../slice/loaderSlice";
+import { useDispatch } from "react-redux";
 function UpdatePassword(){
      const navigate = useNavigate();
+     const dispatch=useDispatch()
 let [pass,showPass]=useState(false)
 let [pass1,showPass1]=useState(false)
 const [update,successUpdate]=useState(false);
@@ -40,10 +42,11 @@ const { token } = useParams();
         toast.warn("Password and Confirm Password not match")
         return;
        }
+        dispatch(showLoader())
 
       try {
 
-      const res = await axios.post("http://localhost:4000/api/v1/auth/resetPassword", {
+      const res = await axios.post(`${process.env.REACT_APP_BASE_URL}/auth/resetPassword`, {
   password,
   confirmPassword: confirmpassword,  // match backend field
   token
@@ -55,6 +58,7 @@ const { token } = useParams();
         setTimeout(() => {
         navigate("/login");
         }, 2000);
+               dispatch(hideLoader())
        
     } catch (error) {
       console.error(error);
@@ -62,6 +66,8 @@ const { token } = useParams();
     }
     finally{
         successUpdate(false);
+                dispatch(hideLoader())
+        
 
     }
   }

@@ -1,72 +1,102 @@
-
 import { useEffect, useState } from "react";
-import { useNavigate, useParams } from "react-router-dom";
 import axios from "axios";
-import { toast } from "react-toastify";
+ 
+import { useNavigate } from "react-router-dom";
+import { showLoader,hideLoader } from "../../../../slice/loaderSlice";
+import { useDispatch } from "react-redux";
+function Aiml() {
+  const navigate = useNavigate();
 
-
-function AiMl() {
-   const navigate=useNavigate();
-  const [courses, setCourses] = useState([]);
-const id='68cc5244dcab91522536be78';//category id
+  const [categories, setCategories] = useState([]);
+  const [aimlCourses, setAimlCourses] = useState([]);
+ const dispatch=useDispatch()
+  /* ================= GET CATEGORIES ================= */
   useEffect(() => {
-    async function categoryData() {
-      try {
-        const res = await axios.post(
-          "http://localhost:4000/api/v1/course/getCourseDetail",
-          { courseID: id }
-        );
-        // console.log(res.data.courseDetail);
-        const courseData = res.data.courseDetail || [];
-        setCourses(courseData); 
-         
+    axios
+      .get(`${process.env.REACT_APP_BASE_URL}/course/showCategory`)
+      .then((res) => setCategories(res.data.allCategory || []))
+      .catch((err) => console.error(err));
+  }, []);
 
-      }
-       catch (err) {
-        console.log(err);
-        toast.warn("No course found");
+  /* ================= GET COURSES BY CATEGORY ================= */
+  useEffect(() => {
+    async function fetchAimlCourses() {
+                dispatch(showLoader())
+      
+      try {
+        const aimlCategory = categories.find(
+          (cat) => cat.name.toLowerCase() === "ai/ml"
+        );
+        
+// console.log(cppCategory._id)
+        // if (!cppCategory && !javaCategory) return;
+
+        const requests = [];
+
+        if (aimlCategory) {
+          // requests.push(
+        const aiml=await axios.post(
+              `${process.env.REACT_APP_BASE_URL}/course/getCourseDetail`,
+          // axios.post("http://localhost:4000/api/v1/course/getCourseDetail", { courseID: CATEGORY_IDS.cpp }),
+
+              { courseID: aimlCategory._id }
+            // )
+          );
+// console.log(cpp.data.courseDetail)
+
+          setAimlCourses(aiml.data.courseDetail)
+        }
+
+               dispatch(hideLoader())
+     
+      } 
+      catch (error) {
+        console.error(error);
+                  dispatch(hideLoader())
+        
       }
     }
-     
-    categoryData();
-  }, [id]);
-if (!courses || courses.length === 0) {
-    return null;
-}
-  return (
+// console.log(cppCourses)
+    if (categories.length > 0) {
+      fetchAimlCourses();
+    }
+  }, [categories]);
+
+  if (aimlCourses.length === 0 ) return null;
+
+  /* ================= UI ================= */
+  const renderCourses = (title, courses) => (
     <div className="new-course-container">
-      <h2>AI and ML Courses </h2>
-      {courses.length > 0 ? (
-        <div className="course-grid">
-          {courses.map((course) => (
-            <div className="course-card" key={course._id}
-            onClick={() => navigate(`/course-detail/${course._id}`)} // ✅ navigate to detail page
-              style={{ cursor: "pointer" }}>
-              <img
-                src={course.thumbnail || "https://via.placeholder.com/200"}
-                alt={course.name}
-                className="course-image"
-              />
-              {/* <div className="course-info"> */}
-                <h3 className="course-name">Course Name: {course.courseName}</h3>
-                <p className="course-price">Price: ₹{course.price}</p>
-                {/* <p className="Ai-instructor">
-                  Instructor: {course?.instructor?.firstName}{" "}
-                  {course?.instructor?.lastName}
-                </p> */}
-                {/* <p className="Ai-category">
-                  Category: {course?.category?.name}
-                </p> */}
-              {/* </div> */}
-            </div>
-          ))}
-        </div>
-      ) : (
-        <p>No courses found for this category</p>
-      )}
+      <h2> AI/ML Courses</h2>
+      {/* <p className="title" style={{ fontSize: 18 }}>{title}</p> */}
+
+      <div className="course-grid">
+        {courses.map((course) => (
+          <div
+            className="course-card"
+            key={course._id}
+            onClick={() => navigate(`/course-detail/${course._id}`)}
+            style={{ cursor: "pointer" }}
+          >
+            <img
+              src={course.thumbnail}
+              alt={course.courseName}
+              className="course-image"
+            />
+            <h3 className="course-name">{course.courseName}</h3>
+            <p className="course-price">₹{course.price}</p>
+          </div>
+        ))}
+      </div>
+    </div>
+  );
+
+  return (
+    <div>
+      {aimlCourses.length>0 &&renderCourses("Ai/Ml Courses", aimlCourses)}
+      
     </div>
   );
 }
 
-export default AiMl;
- 
+export default Aiml;

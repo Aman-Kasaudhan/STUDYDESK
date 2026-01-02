@@ -1,0 +1,166 @@
+.admin-students {
+  padding: 30px;
+  background: #f8f9fc;
+  min-height: 100vh;
+}
+
+.admin-students h2 {
+  margin-bottom: 25px;
+  color: #1f2937;
+}
+
+/* Grid */
+.student-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+  gap: 22px;
+}
+
+/* Card */
+.student-card {
+  background: #ffffff;
+  border-radius: 16px;
+  padding: 20px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+  transition: transform 0.25s ease, box-shadow 0.25s ease;
+}
+
+.student-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 15px 40px rgba(0, 0, 0, 0.12);
+}
+
+/* Header */
+.student-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+}
+
+.student-header h3 {
+  margin: 0;
+  color: #111827;
+}
+
+.email {
+  font-size: 14px;
+  color: #6b7280;
+}
+
+/* Badge */
+.badge {
+  padding: 4px 10px;
+  border-radius: 999px;
+  font-size: 12px;
+  font-weight: 600;
+}
+
+.badge.active {
+  background: #dcfce7;
+  color: #15803d;
+}
+
+.badge.blocked {
+  background: #fee2e2;
+  color: #991b1b;
+}
+
+/* Actions */
+.actions {
+  margin-top: 15px;
+  display: flex;
+  gap: 10px;
+}
+
+.btn {
+  padding: 7px 14px;
+  border-radius: 8px;
+  border: none;
+  font-size: 14px;
+  cursor: pointer;
+  font-weight: 500;
+}
+
+.btn.view {
+  background: #3b82f6;
+  color: white;
+}
+
+.btn.view:hover {
+  background: #2563eb;
+}
+
+.btn.block {
+  background: #ef4444;
+  color: white;
+}
+
+.btn.block:hover {
+  background: #dc2626;
+}
+
+/* ===== Drawer ===== */
+.drawer-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.45);
+  display: flex;
+  justify-content: flex-end;
+  z-index: 2000;
+}
+
+.drawer {
+  width: 420px;
+  max-width: 90%;
+  background: #ffffff;
+  height: 100%;
+  padding: 20px;
+  box-shadow: -10px 0 30px rgba(0, 0, 0, 0.25);
+  animation: slideIn 0.3s ease forwards;
+  overflow-y: auto;
+}
+
+@keyframes slideIn {
+  from {
+    transform: translateX(100%);
+  }
+  to {
+    transform: translateX(0);
+  }
+}
+
+.drawer-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.drawer-email {
+  font-size: 14px;
+  color: #6b7280;
+  margin-bottom: 15px;
+}
+
+.drawer-course {
+  background: #f1f5f9;
+  padding: 12px;
+  border-radius: 10px;
+  margin-bottom: 10px;
+}
+
+.price {
+  font-size: 13px;
+  color: #6b7280;
+}
+
+.close-btn {
+  background: transparent;
+  border: none;
+  font-size: 20px;
+  cursor: pointer;
+}
+
+.empty {
+  font-size: 13px;
+  color: #6b7280;
+}

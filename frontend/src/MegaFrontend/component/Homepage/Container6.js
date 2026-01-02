@@ -2,9 +2,12 @@ import "./Container6.css";
 import img3 from "../../assest/img3.jpg";
 import CTAButton from "./CTAButton";
 import {Link, useNavigate} from 'react-router-dom'
-
+import { useSelector } from "react-redux";
 function Container6() {
     const navigate=useNavigate()
+
+   const {token}=useSelector( (state)=>state.auth);
+
     function w(){
         navigate("/signup")
     }
@@ -28,9 +31,9 @@ function Container6() {
 
         <div className="container6-btn">
             {/* <Link to={"/signup"}> */}
-            <button className="become-instructor-btn" onClick={w}>
+           {!token && <button className="become-instructor-btn" onClick={w}>
   Become an Instructor
-</button>
+</button>}
 
           
           {/* </Link> */}

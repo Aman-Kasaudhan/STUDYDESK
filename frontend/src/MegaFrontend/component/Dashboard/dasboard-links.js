@@ -60,13 +60,13 @@ export const sidebarLinks=[
    type:ACCOUNT_TYPE.STUDENT,
   icon:"VscHistory"
     },
-      {
-  id:7,
-  name:"Wishlist",
-  path:"/dashboard/wishlist",
-   type:ACCOUNT_TYPE.STUDENT,
-  icon:"VscHeart"
-    },
+  //     {
+  // id:7,
+  // name:"Wishlist",
+  // path:"/dashboard/wishlist",
+  //  type:ACCOUNT_TYPE.STUDENT,
+  // icon:"VscHeart"
+  //   },
      {
   id:8,
   name:"Draft",
@@ -74,6 +74,30 @@ export const sidebarLinks=[
   type:ACCOUNT_TYPE.INSTRUCTOR,
 
   icon:"VscEdit"
-
     },
+        {
+  id:11,
+  name:"Dashboard",
+  path:"/admin/dashboard",
+  type:ACCOUNT_TYPE.ADMIN,
+  icon:"VscDashboard"
+    },
+
+    {
+  id:9,
+  name:"Instructors",
+  path:"/admin/instructors",
+  type:ACCOUNT_TYPE.ADMIN,
+  icon:"VscOrganization"
+    },
+
+     {
+  id:10,
+  name:"Students",
+  path:"/admin/students",
+  type:ACCOUNT_TYPE.ADMIN,
+  icon:"VscPerson"
+    },
+
+  
 ]

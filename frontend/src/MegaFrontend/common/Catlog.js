@@ -1,39 +1,37 @@
-
 import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import axios from "axios";
 import { toast } from "react-toastify";
-import "./Catlog.css";   // import css
+import "./Catlog.css";
 
 function CatalogPage() {
-  const { id } = useParams();   
+  const { id } = useParams();
   const [courses, setCourses] = useState([]);
 
   useEffect(() => {
-    async function categoryData() {
+    const fetchCategoryData = async () => {
       try {
         const res = await axios.post(
-          "http://localhost:4000/api/v1/course/getCourseDetail",
+          `${process.env.REACT_APP_BASE_URL}/course/getCourseDetail`,
           { courseID: id }
         );
-        // console.log(res.data.courseDetail);
-        const courseData = res.data.courseDetail || [];
-        setCourses(courseData); 
-        
 
-        // console.log(courseData)
-      }
-       catch (err) {
-        console.log(err);
+        setCourses(res.data?.courseDetail || []);
+      } catch (error) {
+        console.error(error);
         toast.warn("No course found");
       }
+    };
+
+    if (id) {
+      fetchCategoryData();
     }
-    categoryData();
   }, [id]);
 
   return (
     <div className="catalog-container">
-      <h2>All  {courses[0]?.category?.name} Courses </h2>
+      <h2>All {courses[0]?.category?.name} Courses</h2>
+
       {courses.length > 0 ? (
         <div className="course-list">
           {courses.map((course) => (
@@ -43,13 +41,16 @@ function CatalogPage() {
                 alt={course.name}
                 className="course-thumbnail"
               />
+
               <div className="course-info">
                 <h3 className="course-name">{course.name}</h3>
                 <p className="course-price">₹{course.price}</p>
+
                 <p className="course-instructor">
                   Instructor: {course?.instructor?.firstName}{" "}
                   {course?.instructor?.lastName}
                 </p>
+
                 <p className="course-category">
                   Category: {course?.category?.name}
                 </p>
@@ -65,4 +66,3 @@ function CatalogPage() {
 }
 
 export default CatalogPage;
- 

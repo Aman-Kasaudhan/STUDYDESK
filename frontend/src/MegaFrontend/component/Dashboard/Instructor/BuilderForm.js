@@ -18,7 +18,7 @@ function BuilderForm() {
     try {
       dispatch(showLoader());
 
-      const res = await axios.get(`http://localhost:4000/api/v1/course/getCourseDetailByCourseId/${course._id}`,  
+      const res = await axios.get(`${process.env.REACT_APP_BASE_URL}/course/getCourseDetailByCourseId/${course._id}`,  
         {
           headers: { Authorization: `Bearer ${token}` },
         }
@@ -73,7 +73,7 @@ function BuilderForm() {
     try {
       dispatch(showLoader());
       const res = await axios.post(
-        "http://localhost:4000/api/v1/course/createSection",
+        `${process.env.REACT_APP_BASE_URL}/course/createSection`,
         { sectionName: sections[i].sectionName, courseID: course._id },
         { headers: { Authorization: `Bearer ${token}` } }
       );
@@ -89,7 +89,7 @@ function BuilderForm() {
 
   const updateSection = async (i) => {
     await axios.put(
-      "http://localhost:4000/api/v1/course/updateSection",
+      `${process.env.REACT_APP_BASE_URL}/course/updateSection`,
       {
         sectionID: sections[i]._id,
         sectionName: sections[i].sectionName,
@@ -105,7 +105,7 @@ function BuilderForm() {
 
     if (sec._id) {
       await axios.post(
-        "http://localhost:4000/api/v1/course/deleteSection",
+       `${process.env.REACT_APP_BASE_URL}/course/deleteSection`,
         { sectionID: sec._id, courseID: course._id },
         { headers: { Authorization: `Bearer ${token}` } }
       );
@@ -154,7 +154,7 @@ function BuilderForm() {
 
     dispatch(showLoader());
     const res = await axios.post(
-      "http://localhost:4000/api/v1/course/createSubSection",
+     `${process.env.REACT_APP_BASE_URL}/course/createSubSection`,
       fd,
       {
         headers: {
@@ -196,7 +196,7 @@ dispatch(showLoader())
     if (lec.videoFile) fd.append("videoFile", lec.videoFile);
 
     await axios.put(
-      "http://localhost:4000/api/v1/course/updateSubSection",
+     `${process.env.REACT_APP_BASE_URL}/course/updateSubSection`,
       fd,
       {
         headers: {
@@ -224,7 +224,7 @@ dispatch(showLoader())
 
     if (lec._id) {
       await axios.post(
-        "http://localhost:4000/api/v1/course/deleteSubSection",
+       `${process.env.REACT_APP_BASE_URL}/course/deleteSubSection`,
         { subSectionId: lec._id, sectionId: sec._id },
         { headers: { Authorization: `Bearer ${token}` } }
       );

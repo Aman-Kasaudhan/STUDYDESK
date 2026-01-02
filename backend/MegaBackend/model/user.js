@@ -24,7 +24,7 @@ const userSchema=new mongoose.Schema({
     // },
     accountType:{
         type:String,
-        enum:["Instructor","Student"],
+        enum:["Instructor","Student","Admin"],
         required:true,
     },
     additionalDetail:{
@@ -35,6 +35,15 @@ const userSchema=new mongoose.Schema({
          
         
     },
+    isBlocked: {
+    type: Boolean,
+    default: false
+  },
+
+  isVerified: {
+    type: Boolean,
+    default: false   // mainly for instructor
+  },
     courses:[
         {
       type:mongoose.Schema.Types.ObjectId,

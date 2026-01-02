@@ -5,7 +5,7 @@ import { toast } from "react-toastify";
 import './Draft.css'
 import { useNavigate } from "react-router-dom";
 import { setCourse, setStep } from "../../../slice/courseSlice";
-
+import { showLoader,hideLoader } from "../../../slice/loaderSlice";
 function Draft( ){
      
 const dispatch=useDispatch()
@@ -20,6 +20,8 @@ const dispatch=useDispatch()
 
    
     async function as(){
+    dispatch(showLoader())
+
         try{
             
    const res=await axios.get("http://localhost:4000/api/v1/course/getAllCourses",
@@ -34,11 +36,14 @@ const dispatch=useDispatch()
 )
 courses(res.data.draftCourse);
 // console.log(res.data.draftCourse)
+    dispatch(hideLoader())
     
   }
     catch(err){
       toast.warn("Unable to fetch draft courses");
       console.error("Error fetching courses:", err.response?.status, err.response?.data);
+          dispatch(hideLoader())
+      
       return;
     }
     }
@@ -46,9 +51,11 @@ courses(res.data.draftCourse);
  },[]) 
  
  async function handleEdit(courseId) {
+      dispatch(showLoader())
+  
   try {
     const res = await axios.get(
-      `http://localhost:4000/api/v1/course/getCourseDetailByCourseId/${courseId}`,
+      `${process.env.REACT_APP_BASE_URL}/course/getCourseDetailByCourseId/${courseId}`,
       {
         headers: { Authorization: `Bearer ${token}` },
       }
@@ -56,17 +63,23 @@ courses(res.data.draftCourse);
  
     dispatch(setCourse(res.data.courseDetail));
     dispatch(setStep(1));
+    dispatch(hideLoader())
+
     navigate("/dashboard/add-courses");
   } catch {
     toast.error("Unable to load draft course");
+     dispatch(hideLoader())
+ 
   }
 }
  
 
  async function handleDelete(courseId,courseName){
   // console.log(courseId);
+      dispatch(showLoader())
+  
        try{
-        const deleteSection=await axios.post(`http://localhost:4000/api/v1/course/deleteCourse/${courseId}`,
+        const deleteSection=await axios.post(`${process.env.REACT_APP_BASE_URL}/course/deleteCourse/${courseId}`,
              courseId,
         
          {
@@ -77,10 +90,14 @@ courses(res.data.draftCourse);
         }
       )
       toast.success(`${courseName} course is deleted`)
+    dispatch(hideLoader())
+
        window.location.reload()
        }
        catch(err){
-        toast.warn("Unable to delete the course")
+         toast.warn("Unable to delete the course")
+           dispatch(hideLoader())
+       
        }
  }
 

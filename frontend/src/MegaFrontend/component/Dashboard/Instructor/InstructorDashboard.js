@@ -92,7 +92,7 @@ const navigate=useNavigate()
          dispatch(showLoader())
 
         const res = await axios.get(
-          "http://localhost:4000/api/v1/profile/dashboard-stats-instructor",
+         `${process.env.REACT_APP_BASE_URL}/profile/dashboard-stats-instructor`,
           {
             headers: {
               Authorization: `Bearer ${token}`,

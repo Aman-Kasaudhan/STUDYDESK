@@ -22,7 +22,7 @@ useEffect(() => {
     async function fetchCourseData() {
       try {
         const res = await axios.get(
-          `http://localhost:4000/api/v1/course/getCourseDetailByCourseId/${id}`
+         `${process.env.REACT_APP_BASE_URL}/course/getCourseDetailByCourseId/${id}`
         );
  
         // Assuming your backend returns:
@@ -55,7 +55,7 @@ useEffect(() => {
      dispatch(showLoader())
 
      try{
-  const res = await axios.put(`http://localhost:4000/api/v1/course/addStudentEnroll/${id}`,
+  const res = await axios.put(`${process.env.REACT_APP_BASE_URL}/course/addStudentEnroll/${id}`,
     { 
       
       userId:user?._id
@@ -83,7 +83,7 @@ catch(error){
  
 
 await axios.post(
-  "http://localhost:4000/api/v1/course/enroll-single",
+ `${process.env.REACT_APP_BASE_URL}/course/enroll-single`,
   { courseId: id ,
     userId:user?._id
   },    // single ID

@@ -71,7 +71,7 @@ const SignupForm = () => {
     dispatch(showLoader())
 
     try {
-    const res = await axios.post("http://localhost:4000/api/v1/auth/sendotp", {
+    const res = await axios.post(`${process.env.REACT_APP_BASE_URL}/auth/sendotp`, {
         email: formData.email, });
         
       toast.success("OTP resent to your email");
@@ -100,7 +100,7 @@ const SignupForm = () => {
 
     try {
       dispatch(showLoader())
-      const res = await axios.post("http://localhost:4000/api/v1/auth/sendotp", {
+      const res = await axios.post(`${process.env.REACT_APP_BASE_URL}/auth/sendotp`, {
         email: formData.email,
       });
       toast.success("OTP sent to your email");
@@ -126,17 +126,28 @@ const SignupForm = () => {
 
     dispatch(showLoader())
     try {
-      const res = await axios.post("http://localhost:4000/api/v1/auth/signUp", formData);
+      const res = await axios.post(`${process.env.REACT_APP_BASE_URL}/auth/signUp`, formData);
       setMessage(res.data.message);
-      dispatch(setUser(res.data.user));
-      dispatch(setToken(res.data.token));
-      toast.success("User is registered successfully");
+      // dispatch(setUser(res.data.user));
+      // dispatch(setToken(res.data.token));
+      // toast.success("User is registered successfully");
       // console.log(res.data.user.accountType);
       dispatch(hideLoader())
-      if(res.data.user.accountType=="Instructor")
-      navigate("/dashboardInstructor")
-     else 
-      navigate("/dashboardStudent")
+      if(res.data.user.accountType=="Instructor"){
+        navigate("/")
+        toast.success("Thankyou for signup Your account is under review.Please  wait 24hour ")
+
+      }
+     else if(res.data.user.accountType=="Student"){
+
+       dispatch(setUser(res.data.user));
+       dispatch(setToken(res.data.token));
+       toast.success("User is registered successfully");
+       navigate("/dashboardStudent")
+     }
+    // else if(res.data.user.accountType=="Admin")
+      // navigate("/admin/dashboard");
+      
     }
      catch (err) {
       setMessage(err.response?.data?.message || "Signup failed");

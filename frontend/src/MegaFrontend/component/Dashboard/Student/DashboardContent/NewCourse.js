@@ -3,24 +3,32 @@ import axios from "axios";
 import { toast } from "react-toastify";
 import './NewCourses.css'
 import { useNavigate } from "react-router-dom";
+import { showLoader,hideLoader } from "../../../../slice/loaderSlice";
+import { useDispatch } from "react-redux";
 function NewCourse(){
 const [courses,setCourses]=useState([]);
 const navigate=useNavigate();
+const dispatch=useDispatch()
     useEffect(() => {
         async function topCourse() {
+                    dispatch(showLoader())
+          
           try {
             const res = await axios.post(
-              "http://localhost:4000/api/v1/course/getCourseDetail",
+              `${process.env.REACT_APP_BASE_URL}/course/getCourseDetail`,
               {}
             );
             // console.log(res.data.courseDetail);
             const courseData = res.data.topCourses ;
             setCourses(courseData); 
+                      dispatch(hideLoader())
             
     
           }
            catch (err) {
             console.log(err);
+                      dispatch(hideLoader())
+            
             // toast.warn("");
           }
         }

@@ -6,7 +6,7 @@ import  axios  from "axios";
 import { toast } from "react-toastify";
 import './Draft.css'
 import { setCourse,setStep } from "../../../slice/courseSlice";
-
+import { showLoader,hideLoader } from "../../../slice/loaderSlice";
 function MyCourses(){
      const {user}=useSelector((state)=>state.profile);
     const {token}=useSelector((state)=>state.auth);
@@ -20,9 +20,11 @@ function MyCourses(){
 
    
     async function as(){
+          dispatch(showLoader())
+      
         try{
             
-   const res=await axios.get("http://localhost:4000/api/v1/course/getAllCourses",
+   const res=await axios.get(`${process.env.REACT_APP_BASE_URL}/course/getAllCourses`,
     // user?._id,
             {
           headers: {
@@ -32,11 +34,16 @@ function MyCourses(){
         }
 
 )
+
 setPublishcourses(res.data.publishCourse);
+          dispatch(hideLoader())
+
     }
     catch(err){
       toast.warn("Unable to fetch published courses");
       console.error("Error fetching courses:", err.response?.status, err.response?.data);
+          dispatch(hideLoader())
+      
       return;
     }
     }
@@ -44,9 +51,11 @@ as()
  },[]) 
     
  async function handleEdit(courseId) {
+          dispatch(showLoader())
+
   try {
     const res = await axios.get(
-      `http://localhost:4000/api/v1/course/getCourseDetailByCourseId/${courseId}`,
+     `${process.env.REACT_APP_BASE_URL}/course/getCourseDetailByCourseId/${courseId}`,
       {
         headers: { Authorization: `Bearer ${token}` },
       }
@@ -54,17 +63,23 @@ as()
 console.log(res.data.courseDetail)
     dispatch(setCourse(res.data.courseDetail));
     dispatch(setStep(1));
+          dispatch(hideLoader())
+
     navigate("/dashboard/add-courses");
   } catch {
     toast.error("Unable to load draft course");
+          dispatch(hideLoader())
+   
   }
 }
 
 
  async function handleDelete(courseId,courseName){
   // console.log(courseId);
+          dispatch(showLoader())
+
        try{
-        const deleteSection=await axios.post(`http://localhost:4000/api/v1/course/deleteCourse/${courseId}`,
+        const deleteSection=await axios.post(`${process.env.REACT_APP_BASE_URL}/course/deleteCourse/${courseId}`,
              courseId,
         
          {
@@ -75,10 +90,14 @@ console.log(res.data.courseDetail)
         }
       )
       toast.success(`${courseName} course is deleted`)
+          dispatch(hideLoader())
+
        window.location.reload()
        }
        catch(err){
-        toast.warn("Unable to delete the course")
+         toast.warn("Unable to delete the course")
+          dispatch(hideLoader())
+        
        }
  }
 
