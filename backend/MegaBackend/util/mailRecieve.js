@@ -1,6 +1,7 @@
 const express = require("express");
 const router = express.Router();
 const nodemailer = require("nodemailer");
+const SibApiV3Sdk = require("sib-api-v3-sdk");
 
 function generateTicketId() {
   const prefix = "TCK";
@@ -14,68 +15,64 @@ const ticketId = generateTicketId();
 
  
 
-exports.contactAdmin=async (req, res) => {
+exports.contactAdmin = async (req, res) => {
   const { firstName, lastName, email, phoneCode, phoneNumber, message } = req.body;
 
+  const ticketId = generateTicketId();
 
   const userConfirmationHtml = `
-  <div style="font-family: Arial, sans-serif; background:#f9f9f9; padding:20px;">
-    <div style="max-width:600px; margin:auto; background:#ffffff; padding:20px; border-radius:8px;">
-      
-      <h2 style="color:#2c3e50;">Thank You for Contacting Us</h2>
-      
-      <p>Hi <b>${firstName} ${lastName}</b>,</p>
-      
-      <p>
-        We have successfully received your message.  
-        Our support team will review it and get back to you shortly.
-      </p>
+    <div style="font-family: Arial, sans-serif; background:#f9f9f9; padding:20px;">
+      <div style="max-width:600px; margin:auto; background:#ffffff; padding:20px; border-radius:8px;">
+        <h2 style="color:#2c3e50;">Thank You for Contacting Us</h2>
+        <p>Hi <b>${firstName} ${lastName}</b>,</p>
+        <p>We have successfully received your message.</p>
 
-      <hr style="margin:20px 0;" />
+        <hr />
 
-      <p><b>🎫 Ticket ID:</b> ${ticketId}</p>
-      <p><b>📧 Email:</b> ${process.env.MAIL_USER}</p>
-      <p><b>📞 Phone:</b> +91 9125275840</p>
+        <p><b>🎫 Ticket ID:</b> ${ticketId}</p>
+        <p><b>📞 Phone:</b> ${phoneCode} ${phoneNumber}</p>
 
-       
+        <p style="margin-top:20px;">Message:</p>
+        <p>${message}</p>
 
-      <hr style="margin:20px 0;" />
+        <hr />
 
-      <p style="font-size:14px; color:#555;">
-        Please keep your <b>Ticket ID</b> for future reference.
-      </p>
-
-      <p style="margin-top:30px;">
-        Best regards,<br/>
-        <b>Support Team</b><br/>
-        StudyDesk
-      </p>
+        <p>Regards,<br/><b>StudyDesk Support Team</b></p>
+      </div>
     </div>
-  </div>
-`;
-
+  `;
 
   try {
-    const transporter = nodemailer.createTransport({
-      service: "gmail",
-      auth: {
-        user: process.env.MAIL_USER,
-        pass: process.env.MAIL_PASS,
+    const client = SibApiV3Sdk.ApiClient.instance;
+    client.authentications["api-key"].apiKey =
+      process.env.BREVO_API_KEY;
+
+    const apiInstance = new SibApiV3Sdk.TransactionalEmailsApi();
+
+    const sendSmtpEmail = {
+      to: [{ email }], // ✅ MUST be array
+      sender: {
+        email: process.env.BREVO_SENDER_EMAIL,
+        name: process.env.BREVO_SENDER_NAME || "StudyDesk",
       },
-    });
+      subject: `Support Ticket ${ticketId} | StudyDesk`, // ✅ REQUIRED
+      htmlContent: userConfirmationHtml, // ✅ correct key
+    };
 
-    await transporter.sendMail({
-      from: `"StudyDesk Contact" <${process.env.MAIL_USER}>`,
-      to: process.env.MAIL_USER, 
-      to:email,
-      subject: `We received your message | Ticket ID: ${ticketId}`,
-      html: userConfirmationHtml,
-    });
+    const response = await apiInstance.sendTransacEmail(sendSmtpEmail);
 
-    res.status(200).json({ success: true });
+    console.log("✅ Brevo email sent:", response.messageId);
+
+    return res.status(200).json({
+      success: true,
+      message: "Support ticket created successfully. Email sent.",
+      ticketId,
+    });
   } catch (error) {
-    console.error(error.message)
-    res.status(500).json({ success: false, message: error.message });
+    console.error("❌ Brevo email failed:", error);
+    return res.status(500).json({
+      success: false,
+      message: "Failed to send support email",
+    });
   }
 };
- 
