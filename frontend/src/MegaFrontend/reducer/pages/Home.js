@@ -28,7 +28,7 @@ const {user}=useSelector( (state)=>state.profile)
      const {totalItems}=useSelector( (state)=>state.cart)
      const {token}=useSelector( (state)=>state.auth);
      // const accounttype=user?.accountType;
-     // console.log(accounttype)
+    //  console.log( token)
      const navigate=useNavigate()
     
 function contact(){

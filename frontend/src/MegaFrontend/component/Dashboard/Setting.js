@@ -10,6 +10,8 @@ import "../../common/Popup.css";
 import { showLoader,hideLoader } from "../../slice/loaderSlice";
 import { logout } from "../../slice/authSlice";
 import { setUser } from "../../slice/profileSlice";
+import { clearUser } from "../../slice/profileSlice";
+import { persistor } from "../../reducer/store";
 function Setting() {
   const { user } = useSelector((state) => state.profile);
   const dispatch = useDispatch();
@@ -35,6 +37,8 @@ function Setting() {
   const handleLogout = () => setShowPopup(true);
   const confirmLogout = () => {
     dispatch(logout());
+    dispatch(clearUser())
+    persistor.purge();
     navigate("/");
     toast.success("Logout successfully");
     setShowPopup(false);

@@ -18,7 +18,24 @@ import Study from './MegaFrontend/Study'
 import { configureStore } from '@reduxjs/toolkit';
  import { PersistGate } from "redux-persist/integration/react";
 import { store, persistor } from "./MegaFrontend/reducer/store";
+import { logout } from './MegaFrontend/slice/authSlice';
+import { clearUser } from './MegaFrontend/slice/profileSlice';
+import axios from 'axios';
+
+axios.interceptors.response.use(
+  (res) => res,
+  (err) => {
+    if (err.response?.status === 401) {
+      store.dispatch(logout());
+      store.dispatch(clearUser());
+      persistor.purge();
+      window.location.reload();
+    }
+    return Promise.reject(err);
+  }
+);
 const root = ReactDOM.createRoot(document.getElementById('root'));
+
 root.render(
   // <React.StrictMode>
  <Provider store={store}>

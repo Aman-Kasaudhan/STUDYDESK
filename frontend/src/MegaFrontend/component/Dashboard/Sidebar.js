@@ -7,10 +7,12 @@ import { VscSignOut } from "react-icons/vsc";
 import ConfirmModal from "../../common/ConfirmModal";
 import { Navigate, NavLink, useNavigate } from "react-router-dom";
 import {logout} from '../../slice/authSlice'
+import { clearUser } from "../../slice/profileSlice";
 import { VscSettingsGear } from "react-icons/vsc";
 import './Sidebar.css'
 import { toast } from "react-toastify";
 import '../../common/Popup.css'
+import { persistor } from "../../reducer/store";
 function Sidebar({ isOpen, closeSidebar }) {
   const dispatch = useDispatch();
   const navigate = useNavigate();
@@ -24,9 +26,12 @@ function Sidebar({ isOpen, closeSidebar }) {
   
     const confirmLogout = () => {
       dispatch(logout());
+      dispatch(clearUser());
+      persistor.purge();
       navigate("/");
       toast.success("Logout successfully");
       setShowPopup(false);
+      window.location.reload()
     };
   
     const cancelLogout = () => {

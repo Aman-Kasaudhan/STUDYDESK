@@ -133,7 +133,7 @@ function Study() {
   const accountType = useSelector(
     (state) => state.profile?.user?.accountType
   );
-
+// console.log(token)
   return (
     <div className='home'>
       <GlobalLoader show={loading} />
