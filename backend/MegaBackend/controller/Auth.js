@@ -4,16 +4,63 @@ const otpGenerator=require("otp-generator");
 const Profile=require("../model/profile");
 const bcrypt=require("bcrypt");
   const jwt=require("jsonwebtoken");
+const {mailSender}=require("../util/mailSender")
+
 // const { GiTruce } = require("react-icons/gi");
   require("dotenv").config();
 // otp generate
 const otpStore = {};
-exports.sendOTP = async (req, res) => {
+// exports.sendOTP = async (req, res) => {
 
+//   try {
+//     const { email } = req.body;
+// // console.log(email," c")
+//     // Check if email already exists
+//     const checkUser = await User.findOne({ email });
+//     if (checkUser) {
+//       return res.status(400).json({
+//         success: false,
+//         message: "User already registered. Please login.",
+//       });
+//     }
+
+//     // Generate a unique OTP
+//     let otp;
+//     let result;
+//     do {
+//       otp = otpGenerator.generate(4, {
+//         upperCaseAlphabets: false,
+//         lowerCaseAlphabets: false,
+//         specialChars: false,
+//       });
+//       result = await OTP.findOne({ otp });
+//     } while (result);
+
+//     // Save OTP to DB
+//     const payload = { email, otp };
+//     await OTP.create(payload);
+// // await OTP.collection.createIndex({ createdAt: 1 }, { expireAfterSeconds: 300 });
+//     console.log("OTP generated:", otp);
+
+//     res.status(200).json({
+//       success: true,
+//       message: "OTP sent successfully",
+//       otp,
+//     });
+//   } catch (err) {
+//     console.error("OTP error:", err.message);
+//     return res.status(500).json({
+//       success: false,
+//       message: "Something went wrong while sending OTP",
+//     });
+//   }
+// };
+
+exports.sendOTP = async (req, res) => {
   try {
     const { email } = req.body;
-// console.log(email," c")
-    // Check if email already exists
+
+    // 1️⃣ Check if user already exists
     const checkUser = await User.findOne({ email });
     if (checkUser) {
       return res.status(400).json({
@@ -22,39 +69,52 @@ exports.sendOTP = async (req, res) => {
       });
     }
 
-    // Generate a unique OTP
+    // 2️⃣ Generate unique OTP
     let otp;
-    let result;
+    let existingOtp;
+
     do {
-      otp = otpGenerator.generate(4, {
+      otp = otpGenerator.generate(6, {
         upperCaseAlphabets: false,
         lowerCaseAlphabets: false,
         specialChars: false,
       });
-      result = await OTP.findOne({ otp });
-    } while (result);
+      existingOtp = await OTP.findOne({ otp });
+    } while (existingOtp);
 
-    // Save OTP to DB
-    const payload = { email, otp };
-    await OTP.create(payload);
-// await OTP.collection.createIndex({ createdAt: 1 }, { expireAfterSeconds: 300 });
-    console.log("OTP generated:", otp);
+    // 3️⃣ Save OTP in DB
+    await OTP.create({ email, otp });
 
-    res.status(200).json({
+    // 4️⃣ Send OTP via Brevo Email
+    const emailTemplate = `
+      <div style="font-family:Arial">
+        <h2>StudyDesk OTP Verification</h2>
+        <p>Your OTP is:</p>
+        <h1 style="letter-spacing:6px">${otp}</h1>
+        <p>This OTP is valid for 5 minutes.</p>
+        <p>If you didn’t request this, ignore this email.</p>
+      </div>
+    `;
+
+    await mailSender(
+      email,
+      "Your OTP for StudyDesk Verification",
+      emailTemplate
+    );
+
+    // 5️⃣ Success response (NO OTP SENT)
+    return res.status(200).json({
       success: true,
-      message: "OTP sent successfully",
-      otp,
+      message: "OTP sent successfully to your email",
     });
   } catch (err) {
-    console.error("OTP error:", err.message);
+    console.error("OTP error:", err);
     return res.status(500).json({
       success: false,
-      message: "Something went wrong while sending OTP",
+      message: "Failed to send OTP",
     });
   }
 };
-
-
 // // signup
 
 exports.signUp=async(req,res)=>{
