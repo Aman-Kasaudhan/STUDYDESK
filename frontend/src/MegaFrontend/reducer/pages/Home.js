@@ -21,11 +21,16 @@ import axios from 'axios';
 import { FaShoppingCart } from "react-icons/fa";
 import { useSelector } from 'react-redux';
 function Home(){
-  const {user}=useSelector( (state)=>state.profile)
+ 
+
+const {user}=useSelector( (state)=>state.profile)
+
      const {totalItems}=useSelector( (state)=>state.cart)
- const navigate=useNavigate()
-   const {token}=useSelector( (state)=>state.auth);
-    const accounttype=useSelector((state)=>state.profile.user.accountType);
+     const {token}=useSelector( (state)=>state.auth);
+     // const accounttype=user?.accountType;
+     // console.log(accounttype)
+     const navigate=useNavigate()
+    
 function contact(){
   navigate("/contact")
 }
@@ -39,7 +44,7 @@ function contact(){
   </div>
                 <div>
                 {
-                    user && user?.accountType=="Student" &&(
+                   token && user && user?.accountType=="Student" &&(
                         <Link to="/cart-items" className="cart-icon" title="Your Cart">
     <FaShoppingCart size={29} style={{ cursor: "pointer", marginRight: "15px", color:"lightgrey"}} />
                            
@@ -60,24 +65,24 @@ function contact(){
   <div className="navbar-right">
     
 
-    {token != null && (accounttype === "Instructor" ? <InstructorImageDashboard /> : <StudentImageDashboard />)}
+    {token != null && user && (user?.accountType === "Instructor" ? <InstructorImageDashboard /> : <StudentImageDashboard />)}
   </div>
 </div>
 
 
             {/* Section 1 */}
             <div className='part1'>
-              <Link to={"/signup"}>
+             {!token && !user && <Link to={"/signup"}>
               
                <div className='btn'>
 
-                {!token && <div className='btn1'>
+                 <div className='btn1'>
                    <p>Become an Instructor</p>
                    <FaArrowRight/>
-                </div>}
+                </div>
                
                 </div>
-             </Link>
+             </Link>}
            
             <div className='text1'>
                 Empower Your Future with <span className='textStyle'>Coding Skills</span>

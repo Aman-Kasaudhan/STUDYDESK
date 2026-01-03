@@ -10,7 +10,7 @@ import StudentImageDashboard from '../Dashboard/Student/DashboardContent/Student
 import axios from 'axios';
 function Navbar(){
     const {token}=useSelector( (state)=>state.auth);
-    const accounttype=useSelector((state)=>state.profile.user.accountType);
+    // const accounttype=useSelector((state)=>state.profile.user.accountType);
     const {user}=useSelector( (state)=>state.profile)
     const {totalItems}=useSelector( (state)=>state.cart)
     const location=useLocation();
@@ -106,10 +106,11 @@ return(
                 }
                     </div> */}
              
-                <div  className={`auth-buttons ${token ? "hidden" : ""}`}>
+{!token && !user &&
+    <div  className={`auth-buttons ${token ? "hidden" : ""}`}>
   <Link to="/login"><button>Login</button></Link>
   <Link to="/signup"><button>Signup</button></Link>
-</div>
+</div>}
 
              
               </div>

@@ -35,7 +35,11 @@ app.use(cookieParser());
 
 const cors=require("cors");
 app.use(cors({
-  origin: "http://localhost:3000", // frontend URL
+  origin: [
+  "http://localhost:3000",
+  "https://studydesk.vercel.app",
+],
+ // frontend URL
   credentials: true, // allow cookies
   methods: ["GET", "POST", "PUT", "DELETE"],
   allowedHeaders: ["Authorization", "Content-Type"],
