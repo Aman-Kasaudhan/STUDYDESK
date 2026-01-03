@@ -1,39 +1,31 @@
-const nodemailer=require("nodemailer");
+const SibApiV3Sdk = require("sib-api-v3-sdk");
 
-//  require("dotenv").config();
-exports.mailSender=async (email,title,body)=>{
+exports.mailSender = async (email, title, htmlContent) => {
+  try {
+    // Configure API client
+    const client = SibApiV3Sdk.ApiClient.instance;
+    client.authentications["api-key"].apiKey =
+      process.env.BREVO_API_KEY;
 
-    try{
-        // console.log(doc)
-        // transporter
+    const apiInstance = new SibApiV3Sdk.TransactionalEmailsApi();
 
-        let transporter=nodemailer.createTransport({
-            host:process.env.MAIL_HOST,
-            port: 587,
-            secure: false,
-            auth:{
-                user:process.env.MAIL_USER,
-                pass:process.env.MAIL_PASS,
-            },
-        });
+    // Email payload
+    const sendSmtpEmail = {
+      to: [{ email }],
+      sender: {
+        email: process.env.BREVO_SENDER_EMAIL,
+        name: process.env.BREVO_SENDER_NAME || "StudyDesk",
+      },
+      subject: title,
+      htmlContent,
+    };
 
-        // SEND MAIL
+    const response = await apiInstance.sendTransacEmail(sendSmtpEmail);
 
-        let info=await transporter.sendMail({
-              
-            from:`"StudyDesk 👨‍💻" <${process.env.MAIL_USER}>`,
-            to:email,
-            subject:title,
-            html:body,
-        })
-        console.log(info)
-        return info;
-    }
-    catch(err){
-        console.error(err.message)
-    }
-
-}
-
-
- 
+    console.log("✅ Brevo email sent:", response.messageId);
+    return response;
+  } catch (error) {
+    console.error("❌ Brevo email failed:", error);
+    throw error;
+  }
+};
