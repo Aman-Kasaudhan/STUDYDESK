@@ -127,7 +127,7 @@ import Instructors from './component/admin/InstructorAdmin'
 import Students from './component/admin/StudentAdmin'
 import CreateCategory from './component/admin/createCategory'
 function Study() {
-  useAutoLogout();
+  // useAutoLogout();
   const loading = useSelector((state) => state.loader.loading);
   const token = useSelector((state) => state.auth.token);
   const accountType = useSelector(
