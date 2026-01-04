@@ -33,18 +33,22 @@ database.connect();
 const cookieParser=require("cookie-parser");
 app.use(cookieParser());
 
-const cors=require("cors");
-app.use(cors({
-  origin: [
-  "http://localhost:3000",
-  "https://studydesk.vercel.app",
-],
- // frontend URL
-  credentials: true, // allow cookies
-  methods: ["GET", "POST", "PUT", "DELETE"],
-  allowedHeaders: ["Authorization", "Content-Type"],
+ const cors = require("cors");
 
-}));
+app.use(
+  cors({
+    origin: [
+      "http://localhost:3000",
+      "https://studydesk-black.vercel.app", // ✅ EXACT frontend URL
+    ],
+    methods: ["GET", "POST", "PUT", "DELETE", "OPTIONS"],
+    allowedHeaders: ["Content-Type", "Authorization"],
+  })
+);
+
+// ✅ Handle preflight requests
+app.options("*", cors());
+
 
 
 const {cloudinaryConnect}=require("./MegaBackend/config/cloudinary")
@@ -64,13 +68,13 @@ const updateOtpRoutes=require("./MegaBackend/routes/updateOtp")
  const adminRoutes = require("./MegaBackend/routes/adminRoutes");
  
  // routes
- app.use("/api/v1/auth",userRoutes);
- app.use("/api/v1/profile",profileRoutes);
- app.use("/api/v1/course",courseRoutes);
- app.use("/api/v1/payment",paymentRoutes);
- app.use("/api/v1/updateOtp",updateOtpRoutes);
- app.use("/api/v1/contact", contactRoute);
-app.use("/api/v1/admin", adminRoutes);
+ app.use("/auth",userRoutes);
+ app.use("/profile",profileRoutes);
+ app.use("/course",courseRoutes);
+ app.use("/payment",paymentRoutes);
+ app.use("/updateOtp",updateOtpRoutes);
+ app.use("/contact", contactRoute);
+app.use("/admin", adminRoutes);
 
 // get  route
 
