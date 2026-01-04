@@ -13,7 +13,7 @@ const {
 } = require("../controller/admin");
 
 router.use(auth);
-router.use(checkSession);
+// router.use(checkSession);
 // router.use(isAdmin)
 
 
