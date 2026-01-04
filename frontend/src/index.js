@@ -18,10 +18,17 @@ import Study from './MegaFrontend/Study'
 import { configureStore } from '@reduxjs/toolkit';
  import { PersistGate } from "redux-persist/integration/react";
 import { store, persistor } from "./MegaFrontend/reducer/store";
-import { logout } from './MegaFrontend/slice/authSlice';
-import { clearUser } from './MegaFrontend/slice/profileSlice';
+import { logout,setToken } from './MegaFrontend/slice/authSlice';
+import { clearUser,setUser } from './MegaFrontend/slice/profileSlice';
 import axios from 'axios';
 
+const storedUser = localStorage.getItem("user");
+const storedToken = localStorage.getItem("token");
+
+if (storedUser && storedToken) {
+  store.dispatch(setUser(JSON.parse(storedUser)));
+  store.dispatch(setToken(storedToken));
+}
 axios.interceptors.response.use(
   (res) => res,
   (err) => {
