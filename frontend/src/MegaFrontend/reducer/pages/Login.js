@@ -174,7 +174,7 @@ const Login = () => {
         // "http://localhost:4000/api/v1/auth/login",
 
         { email, password },
-        { withCredentials: true }
+        // { withCredentials: true }
       );
 
       const { success, user, token, message } = res.data;
