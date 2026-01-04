@@ -13,6 +13,8 @@ export default function Students() {
   const dispatch = useDispatch();
 
   async function fetchStudent() {
+    dispatch(showLoader());
+
     try {
       const res = await axios.get(
         `${process.env.REACT_APP_BASE_URL}/admin/students`,
@@ -21,8 +23,12 @@ export default function Students() {
         }
       );
       setStudents(res.data.data || []);
+            dispatch(hideLoader());
+
     } catch (err) {
       toast.warn("Unable to fetch students");
+            dispatch(hideLoader());
+return;
     }
   }
 
