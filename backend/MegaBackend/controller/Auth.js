@@ -109,7 +109,7 @@ exports.sendOTP = async (req, res) => {
     });
   } 
   catch (error) {
-  console.error("❌ Brevo full error:", error.response?.body || error);
+  console.error("❌ Brevo full error:");
   return res.status(500).json({
     success: false,
     message: "Email failed",
