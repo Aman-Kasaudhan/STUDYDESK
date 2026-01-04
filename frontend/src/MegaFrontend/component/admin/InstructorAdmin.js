@@ -1,6 +1,6 @@
 import axios from "axios";
 import { useEffect, useState } from "react";
-import { useSelector } from "react-redux";
+import { useSelector,useDispatch } from "react-redux";
 import AdminNavbar from "./navbar";
 import "./InstructorAdmin.css";
 import { showLoader,hideLoader } from "../../slice/loaderSlice";
