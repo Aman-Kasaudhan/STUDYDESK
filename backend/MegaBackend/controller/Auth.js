@@ -109,10 +109,11 @@ exports.sendOTP = async (req, res) => {
     });
   } 
   catch (error) {
-  console.error("❌ Brevo full error:");
+      console.error("OTP error:", err.message);
+
   return res.status(500).json({
     success: false,
-    message: "Email failed",
+    message: "Failed to send OTP",
   });
 }
 
