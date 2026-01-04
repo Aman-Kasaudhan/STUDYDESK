@@ -11,15 +11,26 @@ exports.mailSender = async (email, title, htmlContent) => {
     const apiInstance = new SibApiV3Sdk.TransactionalEmailsApi();
 
     // Email payload
+    // const sendSmtpEmail = {
+    //   to: [{ email }],
+    //   sender: {
+    //     email: process.env.BREVO_SENDER_EMAIL,
+    //     name: process.env.BREVO_SENDER_NAME || "StudyDesk",
+    //   },
+    //   subject: title,
+    //   htmlContent,
+    // };
+
     const sendSmtpEmail = {
-      to: [{ email }],
-      sender: {
-        email: process.env.BREVO_SENDER_EMAIL,
-        name: process.env.BREVO_SENDER_NAME || "StudyDesk",
-      },
-      subject: title,
-      htmlContent,
-    };
+  to: [{ email: "yourpersonalemail@gmail.com" }],
+  sender: {
+    email: process.env.BREVO_SENDER_EMAIL,
+    name: "Brevo Test",
+  },
+  subject: "Brevo Test Email",
+  htmlContent: "<h1>Brevo Test Successful</h1>",
+};
+
 
     const response = await apiInstance.sendTransacEmail(sendSmtpEmail);
 
