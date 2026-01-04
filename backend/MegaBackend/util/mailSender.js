@@ -25,10 +25,18 @@ exports.mailSender = async (email, title, htmlContent) => {
 
     console.log("✅ Brevo email sent:", response.messageId);
     return response;
-  } catch (error) {
-    console.error("❌ Brevo email failed:", error);
-    throw error;
+  } 
+  catch (error) {
+  console.error("❌ Brevo ERROR OBJECT:", error);
+
+  if (error.response) {
+    console.error("❌ Brevo RESPONSE BODY:", error.response.body);
+    console.error("❌ Brevo RESPONSE STATUS:", error.response.status);
   }
+
+  throw error; // important
+}
+
 };
 
 
