@@ -30,10 +30,10 @@ exports.contactAdmin = async (req, res) => {
         <hr />
 
         <p><b>🎫 Ticket ID:</b> ${ticketId}</p>
-        <p><b>📞 Phone:</b> ${phoneCode} ${phoneNumber}</p>
+        <p><b>📞 Phone:</b> +91 9125275840</p>
 
         <p style="margin-top:20px;">Message:</p>
-        <p>${message}</p>
+       
 
         <hr />
 
