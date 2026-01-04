@@ -3,13 +3,17 @@ import { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
 import AdminNavbar from "./navbar";
 import "./InstructorAdmin.css";
+import { showLoader,hideLoader } from "../../slice/loaderSlice";
+import { toast } from "react-toastify";
 
 export default function Instructors() {
   const token = useSelector((state) => state.auth.token);
   const [instructors, setInstructors] = useState([]);
   const [selectedInstructor, setSelectedInstructor] = useState(null);
+const dispatch=useDispatch();
 
   const fetchInstructors = async () => {
+     try{
     const res = await axios.get(
       `${process.env.REACT_APP_BASE_URL}/admin/instructors`,
       {
@@ -17,6 +21,14 @@ export default function Instructors() {
       }
     );
     setInstructors(res.data.data || []);
+    dispatch(hideLoader())
+  }
+  catch(err){
+    toast.warn("Unable to fetch instructor detail")
+    dispatch(hideLoader())
+    return;
+
+  }
   };
 
   useEffect(() => {
@@ -24,21 +36,42 @@ export default function Instructors() {
   }, []);
 
   const verifyInstructor = async (id) => {
+    dispatch(showLoader())
+   
+    try{
     await axios.put(
       `${process.env.REACT_APP_BASE_URL}/admin/verify/${id}`,
       {},
       { headers: { Authorization: `Bearer ${token}` } }
     );
     fetchInstructors();
+    dispatch(hideLoader())
+  }
+  catch(err){
+    toast.warn("Server Error")
+    dispatch(hideLoader())
+  }
   };
-
+  
+  
   const blockUser = async (id) => {
+    dispatch(showLoader())
+   
+    try{
     await axios.put(
       `${process.env.REACT_APP_BASE_URL}/admin/block/${id}`,
       {},
       { headers: { Authorization: `Bearer ${token}` } }
     );
     fetchInstructors();
+    dispatch(hideLoader())
+
+  }
+  catch(err){
+    toast.warn("Unable to block instructor")
+    dispatch(hideLoader())
+    return;
+  }
   };
 
   return (
