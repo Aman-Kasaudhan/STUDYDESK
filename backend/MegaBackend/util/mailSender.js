@@ -11,25 +11,17 @@ exports.mailSender = async (email, title, htmlContent) => {
     const apiInstance = new SibApiV3Sdk.TransactionalEmailsApi();
 
     // Email payload
-    // const sendSmtpEmail = {
-    //   to: [{ email }],
-    //   sender: {
-    //     email: process.env.BREVO_SENDER_EMAIL,
-    //     name: process.env.BREVO_SENDER_NAME || "StudyDesk",
-    //   },
-    //   subject: title,
-    //   htmlContent,
-    // };
-
     const sendSmtpEmail = {
-  to: [{ email: "yourpersonalemail@gmail.com" }],
-  sender: {
-    email: process.env.BREVO_SENDER_EMAIL,
-    name: "Brevo Test",
-  },
-  subject: "Brevo Test Email",
-  htmlContent: "<h1>Brevo Test Successful</h1>",
-};
+      to: [{ email }],
+      sender: {
+        email: process.env.BREVO_SENDER_EMAIL,
+        name: process.env.BREVO_SENDER_NAME || "StudyDesk",
+      },
+      subject: title,
+      htmlContent,
+    };
+
+   
 
 
     const response = await apiInstance.sendTransacEmail(sendSmtpEmail);
@@ -40,10 +32,10 @@ exports.mailSender = async (email, title, htmlContent) => {
   catch (error) {
   console.error("❌ Brevo ERROR OBJECT:", error);
 
-  if (error.response) {
-    console.error("❌ Brevo RESPONSE BODY:", error.response.body);
-    console.error("❌ Brevo RESPONSE STATUS:", error.response.status);
-  }
+  // if (error.response) {
+  //   console.error("❌ Brevo RESPONSE BODY:", error.response.body);
+  //   console.error("❌ Brevo RESPONSE STATUS:", error.response.status);
+  // }
 
   throw error; // important
 }
