@@ -268,7 +268,7 @@ exports.getCourseDetail=async (req,res)=>{
 let courseDetail;
 let topCourses;
           if(courseID){
-          courseDetail=await Course.find({category:courseID})
+          courseDetail=await Course.find({category:courseID,status:"Published"})
                .populate("instructor")
                .populate("category")
                .populate("rateReveiw")
