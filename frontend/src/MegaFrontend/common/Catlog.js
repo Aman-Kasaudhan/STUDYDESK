@@ -3,12 +3,17 @@ import { useParams } from "react-router-dom";
 import axios from "axios";
 import { toast } from "react-toastify";
 import "./Catlog.css";
+import { showLoader,hideLoader } from "../slice/loaderSlice";
+import { useDispatch } from "react-redux";
 
 function CatalogPage() {
   const { id } = useParams();
   const [courses, setCourses] = useState([]);
+const dispatch=useDispatch()
 
   useEffect(() => {
+     dispatch(showLoader())
+
     const fetchCategoryData = async () => {
       try {
         const res = await axios.post(
@@ -17,9 +22,13 @@ function CatalogPage() {
         );
 
         setCourses(res.data?.courseDetail || []);
+                dispatch(hideLoader())
+
       } catch (error) {
         console.error(error);
         toast.warn("No course found");
+                dispatch(hideLoader())
+
       }
     };
 
