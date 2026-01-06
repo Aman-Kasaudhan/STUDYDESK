@@ -293,7 +293,7 @@ let topCourses;
     }
   }
   else{
-    topCourses=await Course.find({})
+    topCourses=await Course.find({status:"Published"})
                 .limit(10)
                .populate("instructor")
                .populate("category")
