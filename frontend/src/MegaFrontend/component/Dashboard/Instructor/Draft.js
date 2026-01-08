@@ -24,7 +24,8 @@ const dispatch=useDispatch()
 
         try{
             
-   const res=await axios.get("http://localhost:4000/api/v1/course/getAllCourses",
+      const res=await axios.get(`${process.env.REACT_APP_BASE_URL}/course/getAllCourses`,
+
     // user?._id,
             {
           headers: {
