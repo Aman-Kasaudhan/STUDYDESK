@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { useParams } from "react-router-dom";
+import { useParams,useNavigate } from "react-router-dom";
 import axios from "axios";
 import { toast } from "react-toastify";
 import "./Catlog.css";
@@ -10,6 +10,7 @@ function CatalogPage() {
   const { id } = useParams();
   const [courses, setCourses] = useState([]);
 const dispatch=useDispatch()
+  const navigate=useNavigate()
 
   useEffect(() => {
      dispatch(showLoader())
@@ -44,7 +45,11 @@ const dispatch=useDispatch()
       {courses.length > 0 ? (
         <div className="course-list">
           {courses.map((course) => (
-            <div className="course-card" key={course._id}>
+           <div className="course-card"
+             key={course._id} 
+             onClick={() => navigate(`/course-detail/${course._id}`)}
+             style={{ cursor: "pointer" }}
+             >
               <img
                 src={course.thumbnail || "https://via.placeholder.com/200"}
                 alt={course.name}
