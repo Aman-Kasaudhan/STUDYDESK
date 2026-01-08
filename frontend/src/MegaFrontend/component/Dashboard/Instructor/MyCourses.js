@@ -30,7 +30,7 @@ function MyCourses(){
           headers: {
             Authorization: `Bearer ${token}`,  
           },
-           withCredentials: true,
+           
         }
 
 )
@@ -86,7 +86,7 @@ console.log(res.data.courseDetail)
           headers: {
             Authorization: `Bearer ${token}`,  
           },
-           withCredentials: true,
+          
         }
       )
       toast.success(`${courseName} course is deleted`)
