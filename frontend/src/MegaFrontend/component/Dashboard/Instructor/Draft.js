@@ -16,7 +16,7 @@ const dispatch=useDispatch()
        const navigate=useNavigate();
     // const userId = req.user.id; 
 
-    useEffect(()=>{
+     
 
    
     async function as(){
@@ -48,8 +48,9 @@ courses(res.data.draftCourse);
       return;
     }
     }
+     useEffect(()=>{
     as()
- },[]) 
+      },[]) 
  
  async function handleEdit(courseId) {
       dispatch(showLoader())
