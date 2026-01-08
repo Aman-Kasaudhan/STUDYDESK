@@ -130,10 +130,13 @@ function handlePurchase(courseID) {
           : "N/A"}
       </p>
 
-      <div className="course-buttons">
+      {
+        user?.accountType!="Instructor" && <div className="course-buttons">
         <button onClick={() => handleAddToCart (course._id)}>Add to Cart</button>
         <button onClick={() => handlePurchase(course._id)}>Buy Now</button>
       </div>
+        }
+     
     </div>
   </div>
   </div>
