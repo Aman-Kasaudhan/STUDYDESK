@@ -1,8 +1,10 @@
 import './Navbar.css'
 import { Link, matchPath, useLocation } from 'react-router-dom';
 import NavbarLink from './NavbarLink';
-import { useSelector } from 'react-redux';
+import { useSelector ,useDispatch} from 'react-redux';
 // import {OutlinesShoppingCart} from 'react-icons'
+import { showLoader,hideLoader } from '../../slice/loaderSlice';
+import { toast } from 'react-toastify';
 
 import { useEffect, useState } from 'react';
 import InstructorDashboard from '../Dashboard/Instructor/InstructorImageDashboard';
@@ -15,11 +17,31 @@ function Navbar(){
     const {totalItems}=useSelector( (state)=>state.cart)
     const location=useLocation();
 const [categories,setCategories]=useState([])
+const dispatch=useDispatch()
 
- useEffect(() => {
-    axios.get(`${process.env.REACT_APP_BASE_URL}/course/showCategory`)
-      .then(response => setCategories(response.data.allCategory || []))
-      .catch(console.error);
+ // useEffect(() => {
+ //    axios.get(`${process.env.REACT_APP_BASE_URL}/course/showCategory`)
+ //      .then(response => setCategories(response.data.allCategory || []))
+ //      .catch(console.error);
+ //  }, []);
+
+    async function fetchCategory(){
+    dispatch(showLoader())
+    try{
+      const response= await axios.get(`${process.env.REACT_APP_BASE_URL}/course/showCategory`);
+      setCategories(response.data.allCategory || [])
+    dispatch(hideLoader())
+      
+    }
+    catch(err){
+        toast.warn("No category found")
+    dispatch(hideLoader())
+    }
+
+}
+    
+  useEffect(() => {
+    fetchCategory()
   }, []);
  
     function Matchlocation(route){
