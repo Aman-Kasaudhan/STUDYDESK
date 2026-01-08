@@ -31,7 +31,7 @@ const dispatch=useDispatch()
           headers: {
             Authorization: `Bearer ${token}`,  
           },
-           withCredentials: true,
+           // withCredentials: true,
         }
 
 )
@@ -88,7 +88,7 @@ courses(res.data.draftCourse);
           headers: {
             Authorization: `Bearer ${token}`,  
           },
-           withCredentials: true,
+           // withCredentials: true,
         }
       )
       toast.success(`${courseName} course is deleted`)
