@@ -83,9 +83,10 @@ function Aiml() {
               alt={course.courseName}
               className="course-image"
             />
-            <h3 className="course-name">{course.courseName}</h3>
-            <p className="course-price">₹{course.price}</p>
-          </div>
+             <h3 className="course-name">Course Name: {course.courseName}</h3>
+            <p className="course-price">Price :₹{course.price}</p>
+      
+               </div>
         ))}
       </div>
     </div>
