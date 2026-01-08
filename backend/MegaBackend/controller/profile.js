@@ -208,7 +208,7 @@ exports.getInstructorDashboardStats = async (req, res) => {
     const instructorId = req.user.id;
 
     // Get all courses of instructor
-    const courses = await Course.find({ instructor: instructorId })
+    const courses = await Course.find({ instructor: instructorId ,status:"Published"})
       .select("courseName price studentEnroll")
       .lean();
       let totalRevenue = 0;
