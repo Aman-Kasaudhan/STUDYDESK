@@ -193,8 +193,9 @@ const dispatch=useDispatch()
               alt={course.courseName}
               className="course-image"
             />
-            <h3 className="course-name">{course.courseName}</h3>
-            <p className="course-price">₹{course.price}</p>
+            <h3 className="course-name">Course Name: {course.courseName}</h3>
+            <p className="course-price">Price :₹{course.price}</p>
+       
           </div>
         ))}
       </div>
