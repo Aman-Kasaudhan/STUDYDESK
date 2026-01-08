@@ -19,6 +19,8 @@ export default function useAutoLogout() {
     if (remainingTime <= 0) {
       dispatch(logout());
       toast.info("Session expired. Please login again.");
+            window.location.reload()
+
       return;
     }
 
