@@ -96,11 +96,11 @@ exports.sendOTP = async (req, res) => {
       </div>
     `;
 
-    await mailSender(
-      email,
-      "Your OTP for StudyDesk Verification",
-      emailTemplate
-    );
+    // await mailSender(
+    //   email,
+    //   "Your OTP for StudyDesk Verification",
+    //   emailTemplate
+    // );
 
     // 5️⃣ Success response (NO OTP SENT)
     return res.status(200).json({
