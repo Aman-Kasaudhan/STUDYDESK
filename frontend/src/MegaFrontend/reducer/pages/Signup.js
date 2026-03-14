@@ -133,12 +133,12 @@ const SignupForm = () => {
       // toast.success("User is registered successfully");
       // console.log(res.data.user.accountType);
       dispatch(hideLoader())
-      if(res.data.user.accountType=="Instructor"){
+      if(res.data.user.accountType==="Instructor"){
         navigate("/")
         toast.success("Thankyou for signup Your account is under review.Please  wait 24hour ")
 
       }
-     else if(res.data.user.accountType=="Student"){
+     else if(res.data.user.accountType==="Student"){
 
        dispatch(setUser(res.data.user));
        dispatch(setToken(res.data.token));
