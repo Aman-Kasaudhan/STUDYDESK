@@ -117,11 +117,11 @@ import EnrollFullCourse from './component/Dashboard/EnrollFullCourse'
 
 import GlobalLoader from './common/GlobalLoader'
 
-// 🔐 route guards
+//   route guards
 import ProtectedRoute from './component/admin/ProtectedRoute'
 import AdminRoute from './component/admin/AdminRoute'
 
-// 👑 admin pages
+//   admin pages
 import AdminDashboard from './component/admin/dashboard'
 import Instructors from './component/admin/InstructorAdmin'
 import Students from './component/admin/StudentAdmin'
@@ -150,7 +150,7 @@ function Study() {
         <Route path="/catalog/:id" element={<CatalogPage />} />
 
 
-        {/* ================= PROTECTED ROUTES ================= */}
+        {/*  PROTECTED ROUTES  */}
         <Route path="/sidebar" element={<ProtectedRoute> <Sidebar /></ProtectedRoute>} />
         <Route
           path="/dashboard/my-profile"
@@ -183,7 +183,7 @@ function Study() {
           }
         />
 
-        {/* ================= INSTRUCTOR ROUTES ================= */}
+        {/*  INSTRUCTOR ROUTES   */}
         {accountType === "Instructor" && (
           <>
             <Route
@@ -205,7 +205,7 @@ function Study() {
           </>
         )}
 
-        {/* ================= STUDENT ROUTES ================= */}
+        {/* STUDENT ROUTES  */}
         {accountType === "Student" && (
           <>
             <Route
@@ -228,7 +228,7 @@ function Study() {
           </>
         )}
 
-        {/* ================= ADMIN ROUTES ================= */}
+        {/*   ADMIN ROUTES  */}
         <Route
           path="/admin/dashboard"
           element={
@@ -263,7 +263,7 @@ function Study() {
           }
         />
 
-        {/* ================= FALLBACK ================= */}
+        {/*   FALLBACK  */}
         <Route path="*" element={<NotFound />} />
       </Routes>
     </div>
