@@ -38,7 +38,7 @@ const dispatch=useDispatch()
     };
 
     fetchCourse();
-  }, [id, token]);
+  }, [id, token,dispatch]);
 
   if (loading) return <p className="loading">Loading...</p>;
   if (!data) return <p>Course not found</p>;
