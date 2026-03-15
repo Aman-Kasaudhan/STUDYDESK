@@ -113,9 +113,10 @@ const dispatch=useDispatch();
     }
   };
 
-  useEffect(() => {
-    sendOldOtp();
-  }, []);
+useEffect(() => {
+  sendOldOtp();
+}, [sendOldOtp]);
+
 
   return (
     <div style={styles.container}>
