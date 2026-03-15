@@ -1,11 +1,11 @@
-import {React,useEffect} from "react";
+import {React} from "react";
 import RenderSteps from './RenderSteps'
-import { useSelector ,useDispatch} from "react-redux";
+import { useSelector } from "react-redux";
 import './AddCourse.css'
-import { Navigate, useNavigate } from "react-router-dom";
+ 
 
 function AddCourse(){
-const navigate=useNavigate();
+ 
 
 const { step } = useSelector((state) => state.course);
 
@@ -29,7 +29,7 @@ const { step } = useSelector((state) => state.course);
              <div >
                
                 {
-                step==1 && <div className="courseTips">
+                step===1 && <div className="courseTips">
             
                     <p>Course Uploading Tips</p>
 
