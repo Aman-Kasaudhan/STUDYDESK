@@ -52,7 +52,7 @@ function BuilderForm() {
   }
 
   if (course?._id) fetchCourseContent();
-}, [course?._id]);
+}, [course?._id,dispatch]);
 
 
   /* ================= SECTION ================= */
