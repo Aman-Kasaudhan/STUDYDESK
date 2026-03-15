@@ -1,4 +1,4 @@
-{
+ {
   "name": "frontend",
   "version": "0.1.0",
   "private": true,
@@ -13,11 +13,9 @@
     "@testing-library/user-event": "^13.5.0",
     "axios": "^1.11.0",
     "concurrently": "^9.2.0",
-    "express-fileupload": "^1.5.2",
     "framer-motion": "^12.23.12",
     "jwt-decode": "^4.0.0",
     "lucide-react": "^0.542.0",
-    "multer": "^2.0.2",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "react-hook-form": "^7.61.1",
@@ -33,24 +31,17 @@
   },
   "scripts": {
     "start": "react-scripts start",
-    "build": "react-scripts build",
+    "build": "npx update-browserslist-db@latest && CI=false react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject",
     "backend": "cd ../backend && npm run dev",
     "dev": "concurrently -n \"client,server\" -c \"bgBlue,bgYellow\" \"npm start\" \"npm run backend\""
   },
   "eslintConfig": {
-    "extends": [
-      "react-app",
-      "react-app/jest"
-    ]
+    "extends": ["react-app", "react-app/jest"]
   },
   "browserslist": {
-    "production": [
-      ">0.2%",
-      "not dead",
-      "not op_mini all"
-    ],
+    "production": [">0.2%", "not dead", "not op_mini all"],
     "development": [
       "last 1 chrome version",
       "last 1 firefox version",
