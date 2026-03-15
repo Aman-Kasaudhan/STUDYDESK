@@ -36,7 +36,7 @@ const dispatch=useDispatch()
     if (id) {
       fetchCategoryData();
     }
-  }, [id]);
+  }, [id, dispatch]);
 
   return (
     <div className="catalog-container">
