@@ -1,4 +1,4 @@
- {
+{
   "name": "frontend",
   "version": "0.1.0",
   "private": true,
@@ -30,11 +30,11 @@
     "web-vitals": "^2.1.4"
   },
   "scripts": {
-   "start": "react-scripts start",
-  "build": "CI=false react-scripts build",
-  "test": "react-scripts test",
-  "eject": "react-scripts eject",
-   "postinstall": "npm install --legacy-peer-deps",
+    "start": "react-scripts start",
+    "build": "CI=false react-scripts build",
+    "test": "react-scripts test",
+    "eject": "react-scripts eject",
+    "postinstall": "npm install --legacy-peer-deps",
     "backend": "cd ../backend && npm run dev",
     "dev": "concurrently -n \"client,server\" -c \"bgBlue,bgYellow\" \"npm start\" \"npm run backend\""
   },
