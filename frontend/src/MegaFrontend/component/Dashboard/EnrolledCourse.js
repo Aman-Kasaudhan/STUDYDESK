@@ -114,7 +114,7 @@ const dispatch=useDispatch()
     };
 
     fetchEnrolledCourses();
-  }, [token]);
+  }, [token,dispatch]);
 
   if (loading) return <p className="loading-text">Loading...</p>;
 
