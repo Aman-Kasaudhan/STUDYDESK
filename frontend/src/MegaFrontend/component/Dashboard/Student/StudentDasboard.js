@@ -20,7 +20,7 @@ function StudentDasboard(){
       </div>   
         
                 {
-                    user && user?.accountType!="Instructor" &&(
+                    user && user?.accountType!=="Instructor" &&(
                         <Link to="/cart-items" className="carticon" title="Your Cart">
     <FaShoppingCart size={29} style={{ cursor: "pointer"}} className="we"/>
                            
