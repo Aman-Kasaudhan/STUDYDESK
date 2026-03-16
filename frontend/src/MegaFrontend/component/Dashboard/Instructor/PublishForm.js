@@ -1,12 +1,12 @@
 import { useDispatch, useSelector } from "react-redux";
 import axios from "axios";
 import { toast } from "react-toastify";
-import { setCourse, setStep } from "../../../slice/courseSlice";
+// import { setCourse, setStep } from "../../../slice/courseSlice";
 import './PublishForm.css'
-import InstructorDashboard from './InstructorImageDashboard'
+// import InstructorDashboard from './InstructorImageDashboard'
 import { useNavigate } from "react-router-dom";
 import {resetCourse} from '../../../slice/courseSlice'
-import { useState } from "react";
+// import { useState } from "react";
 import { showLoader,hideLoader } from "../../../slice/loaderSlice";
 function PublishForm(){
     const {course}=useSelector((state)=>state.course)
