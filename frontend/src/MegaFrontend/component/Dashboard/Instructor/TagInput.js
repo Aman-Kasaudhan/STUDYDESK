@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect,, useMemo  } from "react";
 
 function TagInput({ label, value = [], onChange, disabled }) {
   const [tags, setTags] = useState([]);
@@ -9,7 +9,7 @@ function TagInput({ label, value = [], onChange, disabled }) {
 
 useEffect(() => {
   if (Array.isArray(stableValue)) {
-    setItems(stableValue);
+    setTags(stableValue);
   }
 }, [stableValue]);
 
