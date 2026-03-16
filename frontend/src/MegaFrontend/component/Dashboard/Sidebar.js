@@ -17,7 +17,7 @@ function Sidebar({ isOpen, closeSidebar }) {
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const user = useSelector((state) => state.profile.user);
-  // const [confirmationModal, setconfirmationModal] = useState(null);
+  const [confirmationModal, setconfirmationModal] = useState(null);
 
   const [showPopup, setShowPopup] = useState(false);
   const handleLogout = () => {
