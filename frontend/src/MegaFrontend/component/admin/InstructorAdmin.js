@@ -33,7 +33,7 @@ const dispatch=useDispatch();
 
   useEffect(() => {
     fetchInstructors();
-  }, []);
+  }, [fetchInstructors]);
 
   const verifyInstructor = async (id) => {
     dispatch(showLoader())
