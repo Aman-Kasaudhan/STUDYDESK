@@ -5,11 +5,13 @@ function TagInput({ label, value = [], onChange, disabled }) {
   const [inputValue, setInputValue] = useState("");
 
   // sync parent → local ONLY
-  useEffect(() => {
-    if (Array.isArray(value)) {
-      setTags(value);
-    }
-  }, [JSON.stringify(value)]);
+ const stableValue = useMemo(() => value, [value]);
+
+useEffect(() => {
+  if (Array.isArray(stableValue)) {
+    setItems(stableValue);
+  }
+}, [stableValue]);
 
   const handleKeyDown = (e) => {
     if (disabled) return;
