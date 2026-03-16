@@ -10,7 +10,7 @@ export default function SinglePayment() {
   const navigate = useNavigate();
   const [course, setCourse] = useState(null);
   const [code, setCode] = useState("");
-  const [loading, setLoading] = useState(false);
+  // const [loading, setLoading] = useState(false);
   const token=useSelector((state)=>state.auth.token);
   const {user}=useSelector((state)=>state.profile);
   // console.log(user?._id)
@@ -43,8 +43,8 @@ useEffect(() => {
       }
     }
 
-    if (id) fetchCourseData(); // ✅ only call if id exists
-  }, [id]);
+    if (id) fetchCourseData(); // only call if id exists
+  }, [id,dispatch]);
 
 
   async function handlePayment  ()  {
@@ -55,7 +55,7 @@ useEffect(() => {
      dispatch(showLoader())
 
      try{
-  const res = await axios.put(`${process.env.REACT_APP_BASE_URL}/course/addStudentEnroll/${id}`,
+    await axios.put(`${process.env.REACT_APP_BASE_URL}/course/addStudentEnroll/${id}`,
     { 
       
       userId:user?._id
