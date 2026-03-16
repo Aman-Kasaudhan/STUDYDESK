@@ -10,7 +10,7 @@ export default function SinglePayment() {
   const navigate = useNavigate();
   const [course, setCourse] = useState(null);
   const [code, setCode] = useState("");
-  // const [loading, setLoading] = useState(false);
+  const [loading, setLoading] = useState(false);
   const token=useSelector((state)=>state.auth.token);
   const {user}=useSelector((state)=>state.profile);
   // console.log(user?._id)
