@@ -27,6 +27,8 @@ const dispatch=useDispatch();
   };
 
   // Send OTP to current email
+  useEffect(() => {
+  
   const sendOldOtp = async () => {
     dispatch(showLoader())
     try {
@@ -44,6 +46,8 @@ const dispatch=useDispatch();
       
     }
   };
+    
+}, [sendOldOtp]);
 
   const verifyOldOtp = async () => {
     dispatch(showLoader())
@@ -114,7 +118,7 @@ const dispatch=useDispatch();
   };
 
 useEffect(() => {
-  sendOldOtp();
+ 
 }, [sendOldOtp]);
 
 
