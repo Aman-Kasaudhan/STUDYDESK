@@ -5,7 +5,7 @@ import './Home.css'
 import '../../component/Homepage/CTAButton.css';
 
 import banner from '../../assest/banner.mp4'
-import CTAButton from '../../component/Homepage/CTAButton'
+// import CTAButton from '../../component/Homepage/CTAButton'
 import Container1 from '../../component/Homepage/Container1'
 import Container2 from '../../component/Homepage/Container2'
 import Container3 from '../../component/Homepage/Container3'
@@ -13,11 +13,11 @@ import Container4 from '../../component/Homepage/Container4'
 import Container5 from '../../component/Homepage/Container5'
 import Container6 from '../../component/Homepage/Container6'
 import Navbar from '../../component/Homepage/Navbar'
-import Login from './Login'
-import Signup from './Signup'
+// import Login from './Login'
+// import Signup from './Signup'
  import InstructorImageDashboard from '../../component/Dashboard/Instructor/InstructorImageDashboard';
 import StudentImageDashboard from '../../component/Dashboard/Student/DashboardContent/StudentImageDashboard';
-import axios from 'axios';
+// import axios from 'axios';
 import { FaShoppingCart } from "react-icons/fa";
 import { useSelector } from 'react-redux';
 function Home(){
@@ -44,7 +44,7 @@ function contact(){
   </div>
                 <div>
                 {
-                   token && user && user?.accountType=="Student" &&(
+                   token && user && user?.accountType==="Student" &&(
                         <Link to="/cart-items" className="cart-icon" title="Your Cart">
     <FaShoppingCart size={29} style={{ cursor: "pointer", marginRight: "15px", color:"lightgrey"}} />
                            
