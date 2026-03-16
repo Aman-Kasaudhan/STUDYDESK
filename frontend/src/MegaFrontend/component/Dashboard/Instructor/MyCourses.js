@@ -8,14 +8,14 @@ import './Draft.css'
 import { setCourse,setStep } from "../../../slice/courseSlice";
 import { showLoader,hideLoader } from "../../../slice/loaderSlice";
 function MyCourses(){
-     const {user}=useSelector((state)=>state.profile);
+     // const {user}=useSelector((state)=>state.profile);
     const {token}=useSelector((state)=>state.auth);
        const [publishCourses,setPublishcourses]=useState([]);
        const navigate=useNavigate();
        const dispatch=useDispatch();
     // const userId = req.user.id; 
        const { course } = useSelector(state => state.course);
-    const courseId= course?._id
+    // const courseId= course?._id
     useEffect(()=>{
 
    
@@ -48,7 +48,7 @@ setPublishcourses(res.data.publishCourse);
     }
     }
 as()
- },[]) 
+ },[dispatch,token]) 
     
  async function handleEdit(courseId) {
           dispatch(showLoader())
@@ -79,7 +79,7 @@ console.log(res.data.courseDetail)
           dispatch(showLoader())
 
        try{
-        const deleteSection=await axios.post(`${process.env.REACT_APP_BASE_URL}/course/deleteCourse/${courseId}`,
+        await axios.post(`${process.env.REACT_APP_BASE_URL}/course/deleteCourse/${courseId}`,
              courseId,
         
          {
@@ -107,7 +107,7 @@ return (
     {publishCourses.length === 0 && <p>No published courses found.</p>}
     {publishCourses.map(course => (
       <div key={course._id} className="course-container">
-        <img src={course.thumbnail} className="draftImage"></img>
+        <img src={course.thumbnail} className="draftImage" alt="Thumbnail"></img>
         <h3 className="draftName"> Course Name: {course.courseName}</h3>
         {/* <p className="draftDesc"> Course description: {course.courseDescription}</p> */}
         <p className="draftPrice">Price: {course.price}</p>
