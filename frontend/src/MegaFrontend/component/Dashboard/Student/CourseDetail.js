@@ -12,8 +12,8 @@ function CourseDetail() {
   const {user}=useSelector( (state)=>state.profile)
      const {totalItems}=useSelector( (state)=>state.cart)
  const navigate=useNavigate();
-  const { id } = useParams(); // ✅ get course ID from URL
-  const [course, setCourse] = useState(null); // ✅ name should be singular
+  const { id } = useParams(); //   get course ID from URL
+  const [course, setCourse] = useState(null); //   name should be singular
 //   console.log("Course ID from params:", id);
 const dispatch = useDispatch();
 console.log(id)
@@ -45,7 +45,7 @@ console.log(id)
       }
     }
 
-    if (id) fetchCourseData(); // ✅ only call if id exists
+    if (id) fetchCourseData(); //   only call if id exists
   }, [id,dispatch]);
 
   if (!course) return <p>Loading course details...</p>;
@@ -144,7 +144,7 @@ function handlePurchase(courseID) {
 
 }
 
-// ✅ Add to Cart Logic
+//   Add to Cart Logic
 // function addToCart(courseID) {
 //   let cart = JSON.parse(localStorage.getItem("cart")) || [];
 //   if (!cart.includes(courseID)) {
