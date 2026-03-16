@@ -125,7 +125,7 @@ const dispatch=useDispatch()
 // console.log(cppCategory._id)
         // if (!cppCategory && !javaCategory) return;
 
-        const requests = [];
+        // const requests = [];
 
         if (cppCategory) {
           // requests.push(
@@ -170,7 +170,7 @@ const dispatch=useDispatch()
     if (categories.length > 0) {
       fetchLanguageCourses();
     }
-  }, [categories]);
+  }, [categories,dispatch]);
 
   if (cppCourses.length === 0 && javaCourses.length === 0 && pythonCourses.length===0) return null;
 
