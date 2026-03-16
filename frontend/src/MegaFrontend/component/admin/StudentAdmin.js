@@ -34,7 +34,7 @@ return;
 
   useEffect(() => {
     fetchStudent();
-  }, []);
+  }, [fetchStudent]);
 
   const blockUser = async (id) => {
     dispatch(showLoader());
