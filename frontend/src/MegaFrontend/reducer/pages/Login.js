@@ -177,7 +177,7 @@ const Login = () => {
         // { withCredentials: true }
       );
 
-      const { success, user, token, message } = res.data;
+      const { success, user, token } = res.data;
  
       if (!success) {
         toast.error( "Login failed");
@@ -185,14 +185,14 @@ const Login = () => {
         return;
       }
 
-      /* 🔒 BLOCKED USER CHECK */
-      if (user?.isBlocked != false) {
+      /*   BLOCKED USER CHECK */
+      if (user?.isBlocked !== false) {
         toast.error("Your account is blocked. Contact admin.");
         dispatch(hideLoader());
         return;
       }
 
-      /* 👨‍🏫 INSTRUCTOR NOT VERIFIED CHECK */
+      /*   INSTRUCTOR NOT VERIFIED CHECK */
       if (
         user?.accountType === "Instructor" &&
         user?.isVerified === false
