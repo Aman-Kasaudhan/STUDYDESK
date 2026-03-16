@@ -4,7 +4,8 @@ import { createPortal } from "react-dom";
 import { useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
 import axios from "axios";
-import IconBtn from "../../common/Iconbtn";
+// import IconBtn from "../../common/Iconbtn";
+
 import "./Setting.css";
 import "../../common/Popup.css";
 import { showLoader,hideLoader } from "../../slice/loaderSlice";
