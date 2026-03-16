@@ -3,7 +3,7 @@ import './UpdatePassword.css'
 import {AiOutlineEye,AiOutlineEyeInvisible} from 'react-icons/ai'
 import { toast } from "react-toastify";
 import { NavLink, useParams, useNavigate  } from "react-router-dom";
-import { Navigate } from "react-router-dom";
+// import { Navigate } from "react-router-dom";
 import axios from 'axios';
 import { showLoader,hideLoader } from "../../slice/loaderSlice";
 import { useDispatch } from "react-redux";
@@ -46,7 +46,7 @@ const { token } = useParams();
 
       try {
 
-      const res = await axios.post(`${process.env.REACT_APP_BASE_URL}/auth/resetPassword`, {
+       await axios.post(`${process.env.REACT_APP_BASE_URL}/auth/resetPassword`, {
   password,
   confirmPassword: confirmpassword,  // match backend field
   token
