@@ -3,9 +3,9 @@ import axios from "axios";
 import { toast } from "react-toastify";
 import React, { useState , useEffect} from "react";
 import './Signup.css';
-import { Navigate, useNavigate } from "react-router-dom";
-import StudentImageDashboard from "../../component/Dashboard/Student/DashboardContent/StudentImageDashboard";
-import InstructorDashboard from "../../component/Dashboard/Instructor/InstructorImageDashboard";
+import {   useNavigate } from "react-router-dom";
+// import StudentImageDashboard from "../../component/Dashboard/Student/DashboardContent/StudentImageDashboard";
+// import InstructorDashboard from "../../component/Dashboard/Instructor/InstructorImageDashboard";
 import { setUser } from "../../slice/profileSlice";
 import { setToken } from "../../slice/authSlice";
 import { hideLoader,showLoader } from "../../slice/loaderSlice";
@@ -28,7 +28,7 @@ const SignupForm = () => {
     lastName ,
     email ,
     password ,
-    confirmpassword  ,otp } = formData;
+    confirmpassword   } = formData;
 
 
     const handleChange = (e) => {
@@ -71,7 +71,7 @@ const SignupForm = () => {
     dispatch(showLoader())
 
     try {
-    const res = await axios.post(`${process.env.REACT_APP_BASE_URL}/auth/sendotp`, {
+     await axios.post(`${process.env.REACT_APP_BASE_URL}/auth/sendotp`, {
         email: formData.email, });
         
       toast.success("OTP resent to your email");
