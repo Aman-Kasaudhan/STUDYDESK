@@ -9,7 +9,7 @@ import { showLoader,hideLoader } from "../../../slice/loaderSlice";
 function Draft( ){
      
 const dispatch=useDispatch()
-    const {user}=useSelector((state)=>state.profile);
+    // const {user}=useSelector((state)=>state.profile);
     const {token}=useSelector((state)=>state.auth);
     // console.log(token)
        const [draftCourses,courses,]=useState([]);
@@ -49,8 +49,8 @@ courses(res.data.draftCourse);
     }
     }
      useEffect(()=>{
-    as()
-      },[]) 
+      as()
+      },[as]) 
  
  async function handleEdit(courseId) {
       dispatch(showLoader())
@@ -81,7 +81,7 @@ courses(res.data.draftCourse);
       dispatch(showLoader())
   
        try{
-        const deleteSection=await axios.post(`${process.env.REACT_APP_BASE_URL}/course/deleteCourse/${courseId}`,
+         await axios.post(`${process.env.REACT_APP_BASE_URL}/course/deleteCourse/${courseId}`,
              courseId,
         
          {
@@ -109,7 +109,7 @@ return (
     {draftCourses.length === 0 && <p>No draft courses found.</p>}
     {draftCourses.map(course => (
       <div key={course._id} className="course-container">
-        <img src={course.thumbnail} className="draftImage"></img>
+        <img src={course.thumbnail} className="draftImage" alt="Thumbnail logo"></img>
         <h3 className="draftName"> Course Name: {course.courseName}</h3>
         <p className="draftDesc"> Course description: {course.courseDescription}</p>
         <p className="draftPrice">Price: {course.price}</p>
