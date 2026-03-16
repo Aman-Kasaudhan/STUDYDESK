@@ -5,12 +5,14 @@ function RequireMent({ label, value = [], onChange, disabled }) {
   const [items, setItems] = useState([]);
 
   // sync parent → local (ONLY)
-  useEffect(() => {
-    if (Array.isArray(value)) {
-      setItems(value);
-    }
-  }, [JSON.stringify(value)]);
+const stableValue = useMemo(() => value, [value]);
 
+useEffect(() => {
+  if (Array.isArray(stableValue)) {
+    setItems(stableValue);
+  }
+}, [stableValue]);
+  
   const addItem = (e) => {
     if (disabled) return;
     if (e.key === "Enter" && e.target.value.trim()) {
