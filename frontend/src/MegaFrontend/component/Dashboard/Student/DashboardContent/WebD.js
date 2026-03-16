@@ -27,7 +27,7 @@ function WebD() {
         const webdCategory = categories.find(
           (cat) => cat.name.toLowerCase() === "web development"
         );
-        console.log(categories)
+        // console.log(categories)
 
         // const requests = [];
 
