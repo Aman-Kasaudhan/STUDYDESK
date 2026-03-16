@@ -121,7 +121,7 @@ const navigate=useNavigate()
     };
 
     if (token) fetchInstructorStats();
-  }, [token]);
+  }, [token,dispatch]);
  
   function addCourse(){
     navigate("/dashboard/add-courses")
