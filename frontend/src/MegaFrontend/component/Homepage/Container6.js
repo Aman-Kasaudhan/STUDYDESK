@@ -1,7 +1,7 @@
 import "./Container6.css";
 import img3 from "../../assest/img3.jpg";
-import CTAButton from "./CTAButton";
-import {Link, useNavigate} from 'react-router-dom'
+// import CTAButton from "./CTAButton";
+import {  useNavigate} from 'react-router-dom'
 import { useSelector } from "react-redux";
 function Container6() {
     const navigate=useNavigate()
