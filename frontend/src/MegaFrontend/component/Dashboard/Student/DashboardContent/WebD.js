@@ -29,7 +29,7 @@ function WebD() {
         );
         console.log(categories)
 
-        const requests = [];
+        // const requests = [];
 
         if (webdCategory) {
            
@@ -58,7 +58,7 @@ function WebD() {
     if (categories.length > 0) {
       fetchWebdCourses();
     }
-  }, [categories]);
+  }, [categories,dispatch]);
 
   if (webdCourses.length === 0 ) return null;
 
