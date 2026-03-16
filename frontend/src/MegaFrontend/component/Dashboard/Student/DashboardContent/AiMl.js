@@ -31,7 +31,7 @@ function Aiml() {
 // console.log(cppCategory._id)
         // if (!cppCategory && !javaCategory) return;
 
-        const requests = [];
+        // const requests = [];
 
         if (aimlCategory) {
           // requests.push(
@@ -60,7 +60,7 @@ function Aiml() {
     if (categories.length > 0) {
       fetchAimlCourses();
     }
-  }, [categories]);
+  }, [categories,dispatch]);
 
   if (aimlCourses.length === 0 ) return null;
 
