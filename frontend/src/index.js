@@ -3,7 +3,7 @@ import ReactDOM from 'react-dom/client';
 import './index.css';
 // import rootReducer from '../MegaFrontend/reducer/rootReducer';
 
-import rootReducer from './MegaFrontend/reducer/rootReducer'
+// import rootReducer from './MegaFrontend/reducer/rootReducer'
 
 
 
@@ -15,7 +15,7 @@ import 'react-toastify/dist/ReactToastify.css';
 import {Provider} from 'react-redux'
 // import store from './MegaFrontend/redux/store';
 import Study from './MegaFrontend/Study'
-import { configureStore } from '@reduxjs/toolkit';
+// import { configureStore } from '@reduxjs/toolkit';
  import { PersistGate } from "redux-persist/integration/react";
 import { store, persistor } from "./MegaFrontend/reducer/store";
 import { logout,setToken } from './MegaFrontend/slice/authSlice';
