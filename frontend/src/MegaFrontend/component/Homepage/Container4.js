@@ -1,5 +1,5 @@
 import studyLogo from "../../assest/Logo.jpg";
-import Logo1 from "../../assest/mg2.jpg";
+// import Logo1 from "../../assest/mg2.jpg";
 import "./Container4.css";
 import {
   FaCrown,
