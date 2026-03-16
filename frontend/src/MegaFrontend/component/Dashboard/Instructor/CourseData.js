@@ -91,7 +91,7 @@ function CreateCourseForm() {
   // Form change handler - only allow changes if not saved
   function handleChange(e) {
     if (isSaved) return; // Prevent editing when saved
-    const { name, value, type, files } = e.target;
+    const { name, value, files } = e.target;
     if (files) {
       setForm({ ...form, [name]: files[0] });
     } 
@@ -134,16 +134,16 @@ function CreateCourseForm() {
 }
     dispatch(showLoader());
 
-    const allowedFields = [
-  "courseName",
-  "courseDescription",
-  "whatYouWillLearn",
-  "price",
-  "category",
-  "tag",
-  "instruction",
-  "thumbnailImage",
-];
+//     const allowedFields = [
+//   "courseName",
+//   "courseDescription",
+//   "whatYouWillLearn",
+//   "price",
+//   "category",
+//   "tag",
+//   "instruction",
+//   "thumbnailImage",
+// ];
 const formData = new FormData();
 
 // primitives
