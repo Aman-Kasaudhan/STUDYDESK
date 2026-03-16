@@ -1,5 +1,5 @@
 import React from "react";
-import { GiNinjaStar } from "react-icons/gi";
+// import { GiNinjaStar } from "react-icons/gi";
 import { useDispatch, useSelector } from "react-redux";  
 import {RiDeleteBin6Line} from "react-icons/ri";
 
@@ -33,7 +33,7 @@ function Wishlist(){
                    <div>
 
                    <div>
-                        <img src={course?.thumbnail}></img>
+                        <img src={course?.thumbnail} alt="course thumbnail"></img>
                    </div>
 
                      <p>{course?.courseName}</p>
