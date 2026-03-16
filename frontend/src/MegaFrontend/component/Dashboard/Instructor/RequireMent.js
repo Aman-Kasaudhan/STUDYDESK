@@ -1,16 +1,16 @@
-import React, { useEffect, useState, useMemo  } from "react";
+import React, { useEffect, useState  } from "react";
 
 function RequireMent({ label, value = [], onChange, disabled }) {
   const [items, setItems] = useState([]);
 
   // sync parent → local (ONLY)
-const stableValue = useMemo(() => value, [value]);
+// const stableValue = useMemo(() => value, [value]);
 
 useEffect(() => {
-  if (Array.isArray(stableValue)) {
-    setItems(stableValue);
+  if (Array.isArray(value)) {
+    setItems(value);
   }
-}, [stableValue]);
+}, [value]);
   
   const addItem = (e) => {
     if (disabled) return;
