@@ -35,7 +35,7 @@ const PurchaseHistory = () => {
     };
 
     fetchPurchaseHistory();
-  }, []);
+  }, [dispatch]);
 
   if (loading) {
     return <h3>Loading purchase history...</h3>;
