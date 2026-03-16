@@ -13,7 +13,7 @@ function BuilderForm() {
 
   const [sections, setSections] = useState([]);
 
-  useEffect(() => {
+  // useEffect(() => {
   async function fetchCourseContent() {
     try {
       dispatch(showLoader());
@@ -50,7 +50,7 @@ function BuilderForm() {
       dispatch(hideLoader());
     }
   }
-
+useEffect(() => {
   if (course?._id) fetchCourseContent();
 }, [course?._id,dispatch]);
 
