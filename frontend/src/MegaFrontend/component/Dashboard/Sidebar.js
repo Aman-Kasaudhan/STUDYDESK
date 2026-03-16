@@ -5,7 +5,7 @@ import SidebarLink from "./SidebarLink";
 import { sidebarLinks } from "./dasboard-links";
 import { VscSignOut } from "react-icons/vsc";
 import ConfirmModal from "../../common/ConfirmModal";
-import { Navigate, NavLink, useNavigate } from "react-router-dom";
+import {  NavLink, useNavigate } from "react-router-dom";
 import {logout} from '../../slice/authSlice'
 import { clearUser } from "../../slice/profileSlice";
 import { VscSettingsGear } from "react-icons/vsc";
@@ -17,7 +17,7 @@ function Sidebar({ isOpen, closeSidebar }) {
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const user = useSelector((state) => state.profile.user);
-  const [confirmationModal, setconfirmationModal] = useState(null);
+  // const [confirmationModal, setconfirmationModal] = useState(null);
 
   const [showPopup, setShowPopup] = useState(false);
   const handleLogout = () => {
