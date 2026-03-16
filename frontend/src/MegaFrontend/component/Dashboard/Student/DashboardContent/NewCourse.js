@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import axios from "axios";
-import { toast } from "react-toastify";
+// import { toast } from "react-toastify";
 import './NewCourses.css'
 import { useNavigate } from "react-router-dom";
 import { showLoader,hideLoader } from "../../../../slice/loaderSlice";
@@ -34,7 +34,7 @@ const dispatch=useDispatch()
         }
          
         topCourse();
-    },[]);
+    },[dispatch]);
     // console.log(courses);
     if (!courses || courses.length === 0) {
     return null;
