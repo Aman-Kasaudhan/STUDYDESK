@@ -10,7 +10,7 @@ function CartItems() {
   const [cart, setCart] = useState([]);
   const [total, setTotal] = useState(0);
   const navigate=useNavigate();
-     const {totalItems}=useSelector( (state)=>state.cart)
+     // const {totalItems}=useSelector( (state)=>state.cart)
 const dispatch=useDispatch();
   // Load cart data on mount
   useEffect(() => {
