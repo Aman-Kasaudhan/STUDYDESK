@@ -1,14 +1,14 @@
 import React from "react";
 import { useDispatch, useSelector } from "react-redux";
-import IconBtn from "../../common/Iconbtn";
+// import IconBtn from "../../common/Iconbtn";
 import { useNavigate } from "react-router-dom";
 import "./Myprofile.css";
 
-import { toast } from "react-toastify";
+// import { toast } from "react-toastify";
 
 function Setting() {
   const { user } = useSelector((state) => state.profile);
-  const dispatch = useDispatch();
+  // const dispatch = useDispatch();
   const navigate = useNavigate();
 
   
