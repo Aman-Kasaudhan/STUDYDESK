@@ -1,17 +1,17 @@
-import React, { useState, useEffect, useMemo  } from "react";
+import React, { useState, useEffect} from "react";
 
 function TagInput({ label, value = [], onChange, disabled }) {
   const [tags, setTags] = useState([]);
   const [inputValue, setInputValue] = useState("");
 
   // sync parent → local ONLY
- const stableValue = useMemo(() => value, [value]);
+ 
 
 useEffect(() => {
-  if (Array.isArray(stableValue)) {
-    setTags(stableValue);
+  if (Array.isArray(value)) {
+    setTags(value);
   }
-}, [stableValue]);
+}, [value]);
 
   const handleKeyDown = (e) => {
     if (disabled) return;
