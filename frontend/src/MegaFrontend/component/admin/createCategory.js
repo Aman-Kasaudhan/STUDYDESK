@@ -23,7 +23,7 @@ const dispatch=useDispatch()
     try {
 dispatch(showLoader())
 setLoading(true)
-      const res = await axios.post(
+        await axios.post(
         `${process.env.REACT_APP_BASE_URL}/course/createCategory`,
         { name, description },
         {
