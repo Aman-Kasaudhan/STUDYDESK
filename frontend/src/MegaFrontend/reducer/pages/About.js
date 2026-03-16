@@ -17,9 +17,9 @@ return(
                 Studeydesk provide good oppurtunity to student 
             </p>
             <div className="aboutImage">
-               <img src={img4} style={{height:200}}></img>
-               <img src={img5} style={{height:200}}></img>
-               <img src={img6} style={{height:200}}></img>
+               <img src={img4} style={{height:200}} alt="img"></img>
+               <img src={img5} style={{height:200}} alt="img"></img>
+               <img src={img6} style={{height:200}} alt="img"></img>
             </div>
 
             <h2>We are passionate about revoluting the way we learn.Our
@@ -44,7 +44,7 @@ return(
             <p></p>
         </div>
 
-        <img src={img4} style={{height:200}} className="right1"></img>
+        <img src={img4} style={{height:200}} className="right1" alt="img"></img>
 
         </div>
 
