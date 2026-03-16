@@ -26,7 +26,7 @@ const dispatch=useDispatch()
  //  }, []);
 
     async function fetchCategory(){
-    dispatch(showLoader())
+    // dispatch(showLoader())
     try{
       const response= await axios.get(`${process.env.REACT_APP_BASE_URL}/course/showCategory`);
       setCategories(response.data.allCategory || [])
