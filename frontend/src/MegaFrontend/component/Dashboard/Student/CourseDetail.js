@@ -46,7 +46,7 @@ console.log(id)
     }
 
     if (id) fetchCourseData(); // ✅ only call if id exists
-  }, [id]);
+  }, [id,dispatch]);
 
   if (!course) return <p>Loading course details...</p>;
 // console.log(course);
@@ -66,7 +66,7 @@ function handlePurchase(courseID) {
     <div className="topCourse">
       
       {
-                    user && user?.accountType!="Instructor" &&(
+                    user && user?.accountType!=="Instructor" &&(
                         <Link to="/cart-items" className="cartSymbol" title="Your Cart">
     <FaShoppingCart size={29} style={{ cursor: "pointer",color:"blue"}} />
                            
@@ -131,7 +131,7 @@ function handlePurchase(courseID) {
       </p>
 
       {
-        user?.accountType!="Instructor" && <div className="course-buttons">
+        user?.accountType!=="Instructor" && <div className="course-buttons">
         <button onClick={() => handleAddToCart (course._id)}>Add to Cart</button>
         <button onClick={() => handlePurchase(course._id)}>Buy Now</button>
       </div>
