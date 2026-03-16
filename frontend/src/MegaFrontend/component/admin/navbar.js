@@ -1,4 +1,4 @@
-import { Link, NavLink } from "react-router-dom";
+import {  NavLink } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import { logout } from "../../slice/authSlice";
 import "./navbar1.css";
