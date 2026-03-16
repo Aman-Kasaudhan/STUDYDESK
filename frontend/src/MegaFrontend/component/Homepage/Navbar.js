@@ -7,14 +7,14 @@ import { showLoader,hideLoader } from '../../slice/loaderSlice';
 import { toast } from 'react-toastify';
 
 import { useEffect, useState } from 'react';
-import InstructorDashboard from '../Dashboard/Instructor/InstructorImageDashboard';
-import StudentImageDashboard from '../Dashboard/Student/DashboardContent/StudentImageDashboard';
+// import InstructorDashboard from '../Dashboard/Instructor/InstructorImageDashboard';
+// import StudentImageDashboard from '../Dashboard/Student/DashboardContent/StudentImageDashboard';
 import axios from 'axios';
 function Navbar(){
     const {token}=useSelector( (state)=>state.auth);
     // const accounttype=useSelector((state)=>state.profile.user.accountType);
     const {user}=useSelector( (state)=>state.profile)
-    const {totalItems}=useSelector( (state)=>state.cart)
+    // const {totalItems}=useSelector( (state)=>state.cart)
     const location=useLocation();
 const [categories,setCategories]=useState([])
 const dispatch=useDispatch()
@@ -42,7 +42,7 @@ const dispatch=useDispatch()
     
   useEffect(() => {
     fetchCategory()
-  }, []);
+  }, [fetchCategory]);
  
     function Matchlocation(route){
     return matchPath({path:route},location.pathname)
