@@ -27,14 +27,14 @@ const dispatch=useDispatch();
   catch(err){
     toast.warn("Unable to fetch instructor detail")
     dispatch(hideLoader())
-    return;
+    // return;
 
   }
   };
 
   useEffect(() => {
     fetchInstructors();
-  }, [fetchInstructors]);
+  }, []);
 
   const verifyInstructor = async (id) => {
     dispatch(showLoader())
