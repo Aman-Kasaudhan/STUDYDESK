@@ -15,7 +15,7 @@ export default function Students() {
   async function fetchStudent() {
 
     try {
-    dispatch(showLoader());
+    // dispatch(showLoader());
       const res = await axios.get(
         `${process.env.REACT_APP_BASE_URL}/admin/students`,
         {
