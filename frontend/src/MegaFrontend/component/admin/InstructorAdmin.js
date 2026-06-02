@@ -14,6 +14,7 @@ const dispatch=useDispatch();
 
   const fetchInstructors = async () => {
      try{
+       dispatch(showLoader())
     const res = await axios.get(
       `${process.env.REACT_APP_BASE_URL}/admin/instructors`,
       {
@@ -50,6 +51,7 @@ const dispatch=useDispatch();
   catch(err){
     toast.warn("Server Error")
     dispatch(hideLoader())
+    return;
   }
   };
   
