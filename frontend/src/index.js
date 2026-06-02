@@ -16,7 +16,7 @@ import { logout, setToken } from './MegaFrontend/slice/authSlice';
 import { clearUser, setUser } from './MegaFrontend/slice/profileSlice';
 import axios from 'axios';
 
-document.title = "Studesk";
+document.title = "StudyDesk | Smart Study Platform";
 
 const storedUser = localStorage.getItem("user");
 const storedToken = localStorage.getItem("token");
